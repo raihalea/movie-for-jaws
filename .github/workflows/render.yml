@@ -1,0 +1,58 @@
+name: Render Video
+on:
+  workflow_dispatch:
+    inputs:
+      props_json:
+        description: 'Full JSON props for video (leave empty to use sample-props.json)'
+        required: false
+        default: ''
+      event_title:
+        description: 'Event title (only used if props_json is empty)'
+        required: false
+        default: ''
+      hashtag:
+        description: 'Hashtag (only used if props_json is empty)'
+        required: false
+        default: ''
+
+jobs:
+  render:
+    name: Render video
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+      - run: npm ci
+      - name: Ensure browser
+        run: npx remotion browser ensure
+      - name: Prepare props
+        run: |
+          if [ -n "$PROPS_JSON" ]; then
+            echo "$PROPS_JSON" > input-props.json
+          elif [ -n "$EVENT_TITLE" ] || [ -n "$HASHTAG" ]; then
+            node -e "
+              const fs = require('fs');
+              const props = JSON.parse(fs.readFileSync('sample-props.json', 'utf8'));
+              if (process.env.EVENT_TITLE) props.eventTitle = process.env.EVENT_TITLE;
+              if (process.env.HASHTAG) props.hashtag = process.env.HASHTAG;
+              fs.writeFileSync('input-props.json', JSON.stringify(props, null, 2));
+            "
+          else
+            cp sample-props.json input-props.json
+          fi
+        env:
+          PROPS_JSON: ${{ github.event.inputs.props_json }}
+          EVENT_TITLE: ${{ github.event.inputs.event_title }}
+          HASHTAG: ${{ github.event.inputs.hashtag }}
+      - name: Render video
+        run: npx remotion render JawsUgLT --props=./input-props.json out/video.mp4
+      - name: Upload video artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jaws-ug-lt-video
+          path: out/video.mp4
+          retention-days: 30
