@@ -67,7 +67,7 @@ const ChapterIcon: React.FC<{ size: number; text?: string }> = ({
     <div
       style={{
         color: "#3b82f6",
-        fontSize: size * 0.12,
+        fontSize: size * 0.14,
         fontWeight: "bold",
         fontFamily: "Arial, sans-serif",
       }}
@@ -112,10 +112,10 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     jawsugSrc ? (
       <Img
         src={jawsugSrc}
-        style={{ width: 300, height: 300, objectFit: "contain" }}
+        style={{ width: 420, height: 420, objectFit: "contain" }}
       />
     ) : (
-      <JawsUgIcon size={300} accentColor={theme.accentColor} />
+      <JawsUgIcon size={420} accentColor={theme.accentColor} />
     );
 
   const renderChapterIcon = () =>
@@ -123,15 +123,15 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       <Img
         src={chapterSrc}
         style={{
-          width: 150,
-          height: 150,
+          width: 220,
+          height: 220,
           objectFit: "contain",
           marginTop: 30,
         }}
       />
     ) : (
       <div style={{ marginTop: 30 }}>
-        <ChapterIcon size={150} />
+        <ChapterIcon size={220} />
       </div>
     );
 
@@ -143,7 +143,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       </FadeIn>
       {eventDate && (
         <FadeIn delay={35} durationInFrames={20}>
-          <div style={{ color: theme.mutedTextColor, fontSize: 28, marginTop: 16, textAlign: "center" }}>
+          <div style={{ color: theme.mutedTextColor, fontSize: 44, marginTop: 16, textAlign: "center" }}>
             {eventDate}
           </div>
         </FadeIn>
@@ -185,15 +185,15 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
           {chapterSrc ? (
             <Img
               src={chapterSrc}
-              style={{ width: 150, height: 150, objectFit: "contain" }}
+              style={{ width: 220, height: 220, objectFit: "contain" }}
             />
           ) : (
-            <ChapterIcon size={150} />
+            <ChapterIcon size={220} />
           )}
         </div>
         {eventDate && (
           <div style={{ transform: `translateX(${chapterTranslateX}px)`, opacity: chapterOpacity, marginTop: 16 }}>
-            <div style={{ color: theme.mutedTextColor, fontSize: 28, textAlign: "center" }}>
+            <div style={{ color: theme.mutedTextColor, fontSize: 44, textAlign: "center" }}>
               {eventDate}
             </div>
           </div>
@@ -211,7 +211,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
         </ScaleIn>
         {eventDate && (
           <ScaleIn delay={15}>
-            <div style={{ color: theme.mutedTextColor, fontSize: 28, marginTop: 16, textAlign: "center" }}>
+            <div style={{ color: theme.mutedTextColor, fontSize: 44, marginTop: 16, textAlign: "center" }}>
               {eventDate}
             </div>
           </ScaleIn>
