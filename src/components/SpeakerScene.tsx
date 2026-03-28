@@ -76,6 +76,21 @@ const SpeakerCard: React.FC<{
     ? interpolate(frame, [staggerDelay, staggerDelay + 20], [30, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
     : 0;
 
+  // flipCards: 3D Y-axis rotation from 90deg to 0deg
+  const flipProgress = effect === 'flipCards'
+    ? spring({
+        fps,
+        frame: Math.max(0, frame - delay),
+        config: { damping: 12, stiffness: 80, mass: 0.5 },
+      })
+    : 0;
+  const flipRotateY = (1 - flipProgress) * 90;
+
+  // spotlightReveal: expanding circular clip-path
+  const clipProgress = effect === 'spotlightReveal'
+    ? interpolate(frame, [delay, delay + 25], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 100;
+
   // Compute wrapper styles based on effect
   const wrapperStyle: React.CSSProperties = {
     display: "flex",
@@ -90,6 +105,11 @@ const SpeakerCard: React.FC<{
   } else if (effect === 'fadeStagger') {
     wrapperStyle.transform = `translateY(${fadeTranslateY}px)`;
     wrapperStyle.opacity = fadeOpacity;
+  } else if (effect === 'flipCards') {
+    wrapperStyle.transform = `perspective(1000px) rotateY(${flipRotateY}deg)`;
+    wrapperStyle.opacity = flipRotateY > 85 ? 0 : 1;
+  } else if (effect === 'spotlightReveal') {
+    wrapperStyle.clipPath = `circle(${clipProgress}% at 50% 50%)`;
   }
 
   return (
