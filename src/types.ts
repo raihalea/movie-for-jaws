@@ -27,6 +27,12 @@ export type ColorTheme = {
 
 export type SceneThemeOverride = Partial<ColorTheme>;
 
+export type IntroEffect = 'scaleIn' | 'fadeSlide' | 'typewriter';
+export type TitleEffect = 'springScale' | 'glitch' | 'wipeIn';
+export type SpeakerEffect = 'springCards' | 'slideFromSides' | 'fadeStagger';
+export type HashtagEffect = 'springBounce' | 'rotateIn' | 'pulseGlow';
+export type LicenseEffect = 'fadeIn' | 'slideUp' | 'typewriter';
+
 export type JawsUgLTProps = {
   eventTitle: string;
   chapterName: string;
@@ -43,4 +49,9 @@ export type JawsUgLTProps = {
   speakerTheme?: Partial<ColorTheme>;
   hashtagTheme?: Partial<ColorTheme>;
   licenseTheme?: Partial<ColorTheme>;
+  introEffect?: IntroEffect;
+  titleEffect?: TitleEffect;
+  speakerEffect?: SpeakerEffect;
+  hashtagEffect?: HashtagEffect;
+  licenseEffect?: LicenseEffect;
 };

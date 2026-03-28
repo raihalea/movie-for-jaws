@@ -38,6 +38,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
             chapterIconUrl={props.chapterIconUrl}
             chapterName={props.chapterName}
             theme={introTheme}
+            effect={props.introEffect}
           />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
@@ -45,7 +46,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
           presentation={fade()}
         />
         <TransitionSeries.Sequence durationInFrames={durations.titleDuration}>
-          <TitleScene eventTitle={props.eventTitle} theme={titleTheme} />
+          <TitleScene eventTitle={props.eventTitle} theme={titleTheme} effect={props.titleEffect} />
         </TransitionSeries.Sequence>
         {props.speakers.map((group, i) => (
           <React.Fragment key={i}>
@@ -56,7 +57,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
             <TransitionSeries.Sequence
               durationInFrames={durations.speakerDurations[i]}
             >
-              <SpeakerScene speakerGroup={group} index={i} theme={speakerTheme} />
+              <SpeakerScene speakerGroup={group} index={i} theme={speakerTheme} effect={props.speakerEffect} />
             </TransitionSeries.Sequence>
           </React.Fragment>
         ))}
@@ -65,7 +66,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
           presentation={fade()}
         />
         <TransitionSeries.Sequence durationInFrames={durations.hashtagDuration}>
-          <HashtagScene hashtag={props.hashtag} theme={hashtagTheme} />
+          <HashtagScene hashtag={props.hashtag} theme={hashtagTheme} effect={props.hashtagEffect} />
         </TransitionSeries.Sequence>
         {props.musicLicense && (
           <>
@@ -74,7 +75,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
               presentation={fade()}
             />
             <TransitionSeries.Sequence durationInFrames={durations.licenseDuration}>
-              <LicenseScene musicLicense={props.musicLicense} theme={licenseTheme} />
+              <LicenseScene musicLicense={props.musicLicense} theme={licenseTheme} effect={props.licenseEffect} />
             </TransitionSeries.Sequence>
           </>
         )}
