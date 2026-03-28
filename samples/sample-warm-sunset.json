@@ -42,12 +42,12 @@
   },
   "musicDurationInSeconds": 65,
   "theme": {
-    "backgroundColor": "#3a2520",
+    "backgroundColor": "#fde8d8",
     "accentColor": "#ff6b35",
-    "textColor": "#fff5ee",
-    "mutedTextColor": "#d8c0b0",
-    "gradientFrom": "#2a1510",
-    "gradientTo": "#4a3028"
+    "textColor": "#3a2018",
+    "mutedTextColor": "#8a6550",
+    "gradientFrom": "#f5d0b8",
+    "gradientTo": "#ffeee0"
   },
   "introEffect": "typewriter",
   "titleEffect": "wipeIn",
