@@ -12,6 +12,75 @@ import type { ColorTheme, IntroEffect } from "../types";
 
 const { fontFamily } = loadFont();
 
+const JawsUgIcon: React.FC<{ size: number; accentColor: string }> = ({
+  size,
+  accentColor,
+}) => (
+  <div
+    style={{
+      width: size,
+      height: size,
+      borderRadius: "50%",
+      backgroundColor: accentColor,
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <div
+      style={{
+        color: "#ffffff",
+        fontSize: size * 0.14,
+        fontWeight: "bold",
+        fontFamily: "Arial, sans-serif",
+        lineHeight: 1.2,
+      }}
+    >
+      JAWS
+    </div>
+    <div
+      style={{
+        color: "#ffffff",
+        fontSize: size * 0.14,
+        fontWeight: "bold",
+        fontFamily: "Arial, sans-serif",
+        lineHeight: 1.2,
+      }}
+    >
+      -UG
+    </div>
+  </div>
+);
+
+const ChapterIcon: React.FC<{ size: number; text?: string }> = ({
+  size,
+  text = "Chapter",
+}) => (
+  <div
+    style={{
+      width: size,
+      height: size,
+      borderRadius: "50%",
+      backgroundColor: "#3b82f6",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    <div
+      style={{
+        color: "#ffffff",
+        fontSize: size * 0.12,
+        fontWeight: "bold",
+        fontFamily: "Arial, sans-serif",
+      }}
+    >
+      {text}
+    </div>
+  </div>
+);
+
 interface IntroSceneProps {
   jawsugIconUrl?: string;
   chapterIconUrl?: string;
@@ -33,32 +102,46 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     ? jawsugIconUrl.startsWith("http")
       ? jawsugIconUrl
       : staticFile(jawsugIconUrl)
-    : staticFile("jaws-ug-icon.svg");
+    : null;
 
   const chapterSrc = chapterIconUrl
     ? chapterIconUrl.startsWith("http")
       ? chapterIconUrl
       : staticFile(chapterIconUrl)
-    : staticFile("chapter-icon.svg");
+    : null;
+
+  const renderJawsugIcon = () =>
+    jawsugSrc ? (
+      <Img
+        src={jawsugSrc}
+        style={{ width: 240, height: 240, objectFit: "contain" }}
+      />
+    ) : (
+      <JawsUgIcon size={240} accentColor={theme.accentColor} />
+    );
+
+  const renderChapterIcon = () =>
+    chapterSrc ? (
+      <Img
+        src={chapterSrc}
+        style={{
+          width: 120,
+          height: 120,
+          objectFit: "contain",
+          marginTop: 30,
+        }}
+      />
+    ) : (
+      <div style={{ marginTop: 30 }}>
+        <ChapterIcon size={120} />
+      </div>
+    );
 
   const renderScaleIn = () => (
     <>
-      <ScaleIn>
-        <Img
-          src={jawsugSrc}
-          style={{ width: 240, height: 240, objectFit: "contain" }}
-        />
-      </ScaleIn>
+      <ScaleIn>{renderJawsugIcon()}</ScaleIn>
       <FadeIn delay={20} durationInFrames={20}>
-        <Img
-          src={chapterSrc}
-          style={{
-            width: 120,
-            height: 120,
-            objectFit: "contain",
-            marginTop: 30,
-          }}
-        />
+        {renderChapterIcon()}
       </FadeIn>
       <FadeIn delay={35} durationInFrames={20}>
         <div
@@ -106,10 +189,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
             opacity: jawsOpacity,
           }}
         >
-          <Img
-            src={jawsugSrc}
-            style={{ width: 240, height: 240, objectFit: "contain" }}
-          />
+          {renderJawsugIcon()}
         </div>
         <div
           style={{
@@ -118,10 +198,14 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
             marginTop: 30,
           }}
         >
-          <Img
-            src={chapterSrc}
-            style={{ width: 120, height: 120, objectFit: "contain" }}
-          />
+          {chapterSrc ? (
+            <Img
+              src={chapterSrc}
+              style={{ width: 120, height: 120, objectFit: "contain" }}
+            />
+          ) : (
+            <ChapterIcon size={120} />
+          )}
         </div>
         <div
           style={{
@@ -148,22 +232,9 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
 
     return (
       <>
-        <ScaleIn>
-          <Img
-            src={jawsugSrc}
-            style={{ width: 240, height: 240, objectFit: "contain" }}
-          />
-        </ScaleIn>
+        <ScaleIn>{renderJawsugIcon()}</ScaleIn>
         <ScaleIn delay={15}>
-          <Img
-            src={chapterSrc}
-            style={{
-              width: 120,
-              height: 120,
-              objectFit: "contain",
-              marginTop: 30,
-            }}
-          />
+          {renderChapterIcon()}
         </ScaleIn>
         <div
           style={{
