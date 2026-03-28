@@ -1,12 +1,12 @@
 import type { ColorTheme } from "../types";
 
 export const DEFAULT_THEME: ColorTheme = {
-  backgroundColor: "#2d3561",
+  backgroundColor: "#c8daf0",
   accentColor: "#FF9900",
-  textColor: "#ffffff",
-  mutedTextColor: "#c8c8d8",
-  gradientFrom: "#1e2749",
-  gradientTo: "#3a4785",
+  textColor: "#1a2030",
+  mutedTextColor: "#5a6880",
+  gradientFrom: "#a8c4e0",
+  gradientTo: "#d8e6f5",
 };
 
 export function resolveTheme(

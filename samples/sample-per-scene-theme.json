@@ -35,24 +35,24 @@
   },
   "musicDurationInSeconds": 70,
   "theme": {
-    "backgroundColor": "#1e2a45",
+    "backgroundColor": "#d0dff5",
     "accentColor": "#4da6ff",
-    "textColor": "#e0f0ff",
-    "mutedTextColor": "#a0b0d0",
-    "gradientFrom": "#152040",
-    "gradientTo": "#253a5e"
+    "textColor": "#1a2540",
+    "mutedTextColor": "#4a5a78",
+    "gradientFrom": "#b8cce8",
+    "gradientTo": "#e0ebf8"
   },
   "introTheme": {
     "accentColor": "#ff4da6",
-    "backgroundColor": "#352030"
+    "backgroundColor": "#f5d0e5"
   },
   "speakerTheme": {
     "accentColor": "#ffd700",
-    "mutedTextColor": "#c8b898"
+    "mutedTextColor": "#7a6a50"
   },
   "hashtagTheme": {
     "accentColor": "#00ffcc",
-    "gradientFrom": "#10352a"
+    "gradientFrom": "#c0ede0"
   },
   "introEffect": "scaleIn",
   "titleEffect": "glitch",
