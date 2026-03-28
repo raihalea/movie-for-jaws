@@ -47,7 +47,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
       <>
         <div
           style={{
-            fontSize: 120,
+            fontSize: 150,
             transform: `scale(${iconScale})`,
             marginBottom: 30,
           }}
@@ -57,7 +57,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         <div
           style={{
             color: theme.accentColor,
-            fontSize: 80,
+            fontSize: 100,
             fontWeight: 900,
             transform: `scale(${hashtagScale})`,
             textAlign: "center",
@@ -68,7 +68,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 36,
+            fontSize: 44,
             marginTop: 30,
             opacity: subtitleOpacity,
             textAlign: "center",
@@ -92,7 +92,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
       <>
         <div
           style={{
-            fontSize: 120,
+            fontSize: 150,
             marginBottom: 30,
             transform: `rotateY(${iconRotate}deg)`,
             opacity: iconOpacity,
@@ -103,7 +103,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         <div
           style={{
             color: theme.accentColor,
-            fontSize: 80,
+            fontSize: 100,
             fontWeight: 900,
             textAlign: "center",
             transform: `rotateY(${hashtagRotate}deg)`,
@@ -115,7 +115,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 36,
+            fontSize: 44,
             marginTop: 30,
             textAlign: "center",
             transform: `rotateY(${subtitleRotate}deg)`,
@@ -139,7 +139,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
       <>
         <div
           style={{
-            fontSize: 120,
+            fontSize: 150,
             marginBottom: 30,
             opacity: iconOpacity,
           }}
@@ -149,7 +149,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         <div
           style={{
             color: theme.accentColor,
-            fontSize: 80,
+            fontSize: 100,
             fontWeight: 900,
             textAlign: "center",
             opacity: hashtagOpacity,
@@ -161,7 +161,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 36,
+            fontSize: 44,
             marginTop: 30,
             textAlign: "center",
             opacity: subtitleOpacity,

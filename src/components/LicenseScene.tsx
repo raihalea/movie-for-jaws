@@ -32,7 +32,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           <FadeIn durationInFrames={15}>
             <div
               style={{
-                fontSize: 64,
+                fontSize: 80,
                 marginBottom: 30,
               }}
             >
@@ -41,7 +41,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
             <div
               style={{
                 color: theme.mutedTextColor,
-                fontSize: 28,
+                fontSize: 34,
                 marginBottom: 16,
               }}
             >
@@ -51,10 +51,10 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           <div
             style={{
               color: theme.textColor,
-              fontSize: 36,
+              fontSize: 44,
               fontWeight: 700,
               marginBottom: 12,
-              minHeight: 44,
+              minHeight: 54,
             }}
           >
             {musicLicense.title.slice(0, titleChars)}
@@ -62,9 +62,9 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           <div
             style={{
               color: theme.mutedTextColor,
-              fontSize: 28,
+              fontSize: 34,
               marginBottom: 20,
-              minHeight: 34,
+              minHeight: 42,
             }}
           >
             {artistText.slice(0, artistChars)}
@@ -74,7 +74,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
               <div
                 style={{
                   color: theme.mutedTextColor,
-                  fontSize: 22,
+                  fontSize: 28,
                   marginBottom: 8,
                 }}
               >
@@ -87,7 +87,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
               <div
                 style={{
                   color: theme.mutedTextColor,
-                  fontSize: 20,
+                  fontSize: 26,
                 }}
               >
                 {musicLicense.url}
@@ -102,7 +102,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
       <div style={{ textAlign: "center" }}>
         <div
           style={{
-            fontSize: 64,
+            fontSize: 80,
             marginBottom: 30,
           }}
         >
@@ -111,7 +111,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 28,
+            fontSize: 34,
             marginBottom: 16,
           }}
         >
@@ -120,7 +120,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
         <div
           style={{
             color: theme.textColor,
-            fontSize: 36,
+            fontSize: 44,
             fontWeight: 700,
             marginBottom: 12,
           }}
@@ -130,7 +130,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 28,
+            fontSize: 34,
             marginBottom: 20,
           }}
         >
@@ -140,7 +140,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           <div
             style={{
               color: theme.mutedTextColor,
-              fontSize: 22,
+              fontSize: 28,
               marginBottom: 8,
             }}
           >
@@ -151,7 +151,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           <div
             style={{
               color: theme.mutedTextColor,
-              fontSize: 20,
+              fontSize: 26,
             }}
           >
             {musicLicense.url}

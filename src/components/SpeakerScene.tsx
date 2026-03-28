@@ -163,9 +163,9 @@ const OneSpeakerLayout: React.FC<{
         frame={frame}
         fps={fps}
         delay={5}
-        photoSize={280}
-        nameSize={52}
-        affiliationSize={32}
+        photoSize={340}
+        nameSize={64}
+        affiliationSize={40}
         theme={theme}
         effect={effect}
         cardIndex={0}
@@ -173,7 +173,7 @@ const OneSpeakerLayout: React.FC<{
       <div
         style={{
           color: theme.accentColor,
-          fontSize: 40,
+          fontSize: 50,
           fontWeight: 700,
           textAlign: "center",
           maxWidth: 1200,
@@ -221,9 +221,9 @@ const TwoSpeakerLayout: React.FC<{
             frame={frame}
             fps={fps}
             delay={5 + i * 10}
-            photoSize={220}
-            nameSize={44}
-            affiliationSize={28}
+            photoSize={270}
+            nameSize={54}
+            affiliationSize={34}
             theme={theme}
             effect={effect}
             cardIndex={i}
@@ -233,7 +233,7 @@ const TwoSpeakerLayout: React.FC<{
       <div
         style={{
           color: theme.accentColor,
-          fontSize: 38,
+          fontSize: 46,
           fontWeight: 700,
           textAlign: "center",
           maxWidth: 1400,
@@ -281,9 +281,9 @@ const ThreeSpeakerLayout: React.FC<{
             frame={frame}
             fps={fps}
             delay={5 + i * 8}
-            photoSize={180}
-            nameSize={36}
-            affiliationSize={24}
+            photoSize={220}
+            nameSize={44}
+            affiliationSize={30}
             theme={theme}
             effect={effect}
             cardIndex={i}
@@ -293,7 +293,7 @@ const ThreeSpeakerLayout: React.FC<{
       <div
         style={{
           color: theme.accentColor,
-          fontSize: 36,
+          fontSize: 44,
           fontWeight: 700,
           textAlign: "center",
           maxWidth: 1500,
