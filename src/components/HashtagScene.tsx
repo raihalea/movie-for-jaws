@@ -1,14 +1,16 @@
 import React from "react";
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import type { ColorTheme } from "../types";
 
 const { fontFamily } = loadFont();
 
 interface HashtagSceneProps {
   hashtag: string;
+  theme: ColorTheme;
 }
 
-export const HashtagScene: React.FC<HashtagSceneProps> = ({ hashtag }) => {
+export const HashtagScene: React.FC<HashtagSceneProps> = ({ hashtag, theme }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -27,7 +29,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({ hashtag }) => {
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%)",
+        background: `linear-gradient(135deg, ${theme.gradientFrom} 0%, ${theme.backgroundColor} 100%)`,
         justifyContent: "center",
         alignItems: "center",
         fontFamily,
@@ -44,7 +46,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({ hashtag }) => {
       </div>
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 80,
           fontWeight: 900,
           transform: `scale(${hashtagScale})`,
@@ -55,7 +57,7 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({ hashtag }) => {
       </div>
       <div
         style={{
-          color: "#a0a0b0",
+          color: theme.mutedTextColor,
           fontSize: 36,
           marginTop: 30,
           opacity: subtitleOpacity,

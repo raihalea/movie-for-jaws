@@ -19,16 +19,17 @@ export function calculateSceneDurations(
   const introDuration = Math.round(3 * fps);
   const titleDuration = Math.round(4 * fps);
   const hashtagDuration = Math.round(3 * fps);
-  const licenseDuration = Math.round(3 * fps);
+  const licenseDuration = props.musicLicense ? Math.round(3 * fps) : 0;
   const fixedSequenceFrames =
     introDuration + titleDuration + hashtagDuration + licenseDuration;
 
   const numSpeakerGroups = props.speakers.length;
 
   // Number of transitions:
-  // intro->title, title->speaker1, speaker1->speaker2, ..., lastSpeaker->hashtag, hashtag->license
-  // = 1 + 1 + (numSpeakerGroups - 1) + 1 + 1 = numSpeakerGroups + 3
-  const numTransitions = numSpeakerGroups + 3;
+  // intro->title, title->speaker1, speaker1->speaker2, ..., lastSpeaker->hashtag
+  // = 1 + 1 + (numSpeakerGroups - 1) + 1 = numSpeakerGroups + 2
+  // Plus hashtag->license if license is present: +1
+  const numTransitions = numSpeakerGroups + 2 + (props.musicLicense ? 1 : 0);
   const totalTransitionFrames = numTransitions * transitionDuration;
 
   // TransitionSeries total = sum(sequences) - sum(transitions)

@@ -16,6 +16,17 @@ export type MusicLicense = {
   licenseType?: string;
 };
 
+export type ColorTheme = {
+  backgroundColor: string;
+  accentColor: string;
+  textColor: string;
+  mutedTextColor: string;
+  gradientFrom: string;
+  gradientTo: string;
+};
+
+export type SceneThemeOverride = Partial<ColorTheme>;
+
 export type JawsUgLTProps = {
   eventTitle: string;
   chapterName: string;
@@ -23,7 +34,13 @@ export type JawsUgLTProps = {
   chapterIconUrl?: string;
   speakers: SpeakerGroup[];
   hashtag: string;
-  musicLicense: MusicLicense;
+  musicLicense?: MusicLicense;
   musicDurationInSeconds: number;
   musicUrl?: string;
+  theme?: ColorTheme;
+  introTheme?: Partial<ColorTheme>;
+  titleTheme?: Partial<ColorTheme>;
+  speakerTheme?: Partial<ColorTheme>;
+  hashtagTheme?: Partial<ColorTheme>;
+  licenseTheme?: Partial<ColorTheme>;
 };

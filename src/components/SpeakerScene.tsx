@@ -8,13 +8,14 @@ import {
   useVideoConfig,
 } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
-import type { SpeakerGroup, Speaker } from "../types";
+import type { SpeakerGroup, Speaker, ColorTheme } from "../types";
 
 const { fontFamily } = loadFont();
 
 interface SpeakerSceneProps {
   speakerGroup: SpeakerGroup;
   index: number;
+  theme: ColorTheme;
 }
 
 const getSpeakerImgSrc = (photoUrl: string): string => {
@@ -32,7 +33,8 @@ const SpeakerCard: React.FC<{
   photoSize: number;
   nameSize: number;
   affiliationSize: number;
-}> = ({ speaker, frame, fps, delay, photoSize, nameSize, affiliationSize }) => {
+  theme: ColorTheme;
+}> = ({ speaker, frame, fps, delay, photoSize, nameSize, affiliationSize, theme }) => {
   const photoScale = spring({
     fps,
     frame: Math.max(0, frame - delay),
@@ -63,7 +65,7 @@ const SpeakerCard: React.FC<{
           height: photoSize,
           borderRadius: "50%",
           overflow: "hidden",
-          border: "4px solid #FF9900",
+          border: `4px solid ${theme.accentColor}`,
           transform: `scale(${photoScale})`,
         }}
       >
@@ -78,7 +80,7 @@ const SpeakerCard: React.FC<{
       </div>
       <div
         style={{
-          color: "#ffffff",
+          color: theme.textColor,
           fontSize: nameSize,
           fontWeight: 700,
           textAlign: "center",
@@ -89,7 +91,7 @@ const SpeakerCard: React.FC<{
       </div>
       <div
         style={{
-          color: "#a0a0b0",
+          color: theme.mutedTextColor,
           fontSize: affiliationSize,
           textAlign: "center",
           opacity: affiliationOpacity,
@@ -105,7 +107,8 @@ const OneSpeakerLayout: React.FC<{
   speakerGroup: SpeakerGroup;
   frame: number;
   fps: number;
-}> = ({ speakerGroup, frame, fps }) => {
+  theme: ColorTheme;
+}> = ({ speakerGroup, frame, fps, theme }) => {
   const titleOpacity = Math.min(1, Math.max(0, (frame - 30) / 15));
 
   return (
@@ -127,10 +130,11 @@ const OneSpeakerLayout: React.FC<{
         photoSize={280}
         nameSize={52}
         affiliationSize={32}
+        theme={theme}
       />
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 40,
           fontWeight: 700,
           textAlign: "center",
@@ -149,7 +153,8 @@ const TwoSpeakerLayout: React.FC<{
   speakerGroup: SpeakerGroup;
   frame: number;
   fps: number;
-}> = ({ speakerGroup, frame, fps }) => {
+  theme: ColorTheme;
+}> = ({ speakerGroup, frame, fps, theme }) => {
   const titleOpacity = Math.min(1, Math.max(0, (frame - 35) / 15));
 
   return (
@@ -180,12 +185,13 @@ const TwoSpeakerLayout: React.FC<{
             photoSize={220}
             nameSize={44}
             affiliationSize={28}
+            theme={theme}
           />
         ))}
       </div>
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 38,
           fontWeight: 700,
           textAlign: "center",
@@ -204,7 +210,8 @@ const ThreeSpeakerLayout: React.FC<{
   speakerGroup: SpeakerGroup;
   frame: number;
   fps: number;
-}> = ({ speakerGroup, frame, fps }) => {
+  theme: ColorTheme;
+}> = ({ speakerGroup, frame, fps, theme }) => {
   const titleOpacity = Math.min(1, Math.max(0, (frame - 40) / 15));
 
   return (
@@ -235,12 +242,13 @@ const ThreeSpeakerLayout: React.FC<{
             photoSize={180}
             nameSize={36}
             affiliationSize={24}
+            theme={theme}
           />
         ))}
       </div>
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 36,
           fontWeight: 700,
           textAlign: "center",
@@ -258,15 +266,16 @@ const ThreeSpeakerLayout: React.FC<{
 export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
   speakerGroup,
   index,
+  theme,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const speakerCount = speakerGroup.speakers.length;
 
   const backgrounds = [
-    "linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%)",
-    "linear-gradient(180deg, #16213e 0%, #1a1a2e 100%)",
-    "linear-gradient(180deg, #0f0f23 0%, #16213e 100%)",
+    `linear-gradient(180deg, ${theme.gradientFrom} 0%, ${theme.backgroundColor} 100%)`,
+    `linear-gradient(180deg, ${theme.gradientTo} 0%, ${theme.backgroundColor} 100%)`,
+    `linear-gradient(180deg, ${theme.gradientFrom} 0%, ${theme.gradientTo} 100%)`,
   ];
 
   return (
@@ -281,6 +290,7 @@ export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
           speakerGroup={speakerGroup}
           frame={frame}
           fps={fps}
+          theme={theme}
         />
       )}
       {speakerCount === 2 && (
@@ -288,6 +298,7 @@ export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
           speakerGroup={speakerGroup}
           frame={frame}
           fps={fps}
+          theme={theme}
         />
       )}
       {speakerCount >= 3 && (
@@ -295,6 +306,7 @@ export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
           speakerGroup={speakerGroup}
           frame={frame}
           fps={fps}
+          theme={theme}
         />
       )}
     </AbsoluteFill>

@@ -12,6 +12,7 @@ import { SpeakerScene } from "../components/SpeakerScene";
 import { HashtagScene } from "../components/HashtagScene";
 import { LicenseScene } from "../components/LicenseScene";
 import { calculateSceneDurations } from "../utils/timing";
+import { resolveTheme } from "../utils/theme";
 import type { JawsUgLTProps } from "../types";
 
 export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
@@ -19,8 +20,14 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
   const durations = calculateSceneDurations(props, fps);
   const td = durations.transitionDuration;
 
+  const introTheme = resolveTheme(props.theme, props.introTheme);
+  const titleTheme = resolveTheme(props.theme, props.titleTheme);
+  const speakerTheme = resolveTheme(props.theme, props.speakerTheme);
+  const hashtagTheme = resolveTheme(props.theme, props.hashtagTheme);
+  const licenseTheme = resolveTheme(props.theme, props.licenseTheme);
+
   return (
-    <AbsoluteFill style={{ backgroundColor: "#1a1a2e" }}>
+    <AbsoluteFill style={{ backgroundColor: introTheme.backgroundColor }}>
       {props.musicUrl && (
         <Html5Audio src={staticFile(props.musicUrl)} volume={0.3} />
       )}
@@ -30,6 +37,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
             jawsugIconUrl={props.jawsugIconUrl}
             chapterIconUrl={props.chapterIconUrl}
             chapterName={props.chapterName}
+            theme={introTheme}
           />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
@@ -37,7 +45,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
           presentation={fade()}
         />
         <TransitionSeries.Sequence durationInFrames={durations.titleDuration}>
-          <TitleScene eventTitle={props.eventTitle} />
+          <TitleScene eventTitle={props.eventTitle} theme={titleTheme} />
         </TransitionSeries.Sequence>
         {props.speakers.map((group, i) => (
           <React.Fragment key={i}>
@@ -48,7 +56,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
             <TransitionSeries.Sequence
               durationInFrames={durations.speakerDurations[i]}
             >
-              <SpeakerScene speakerGroup={group} index={i} />
+              <SpeakerScene speakerGroup={group} index={i} theme={speakerTheme} />
             </TransitionSeries.Sequence>
           </React.Fragment>
         ))}
@@ -57,15 +65,19 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
           presentation={fade()}
         />
         <TransitionSeries.Sequence durationInFrames={durations.hashtagDuration}>
-          <HashtagScene hashtag={props.hashtag} />
+          <HashtagScene hashtag={props.hashtag} theme={hashtagTheme} />
         </TransitionSeries.Sequence>
-        <TransitionSeries.Transition
-          timing={linearTiming({ durationInFrames: td })}
-          presentation={fade()}
-        />
-        <TransitionSeries.Sequence durationInFrames={durations.licenseDuration}>
-          <LicenseScene musicLicense={props.musicLicense} />
-        </TransitionSeries.Sequence>
+        {props.musicLicense && (
+          <>
+            <TransitionSeries.Transition
+              timing={linearTiming({ durationInFrames: td })}
+              presentation={fade()}
+            />
+            <TransitionSeries.Sequence durationInFrames={durations.licenseDuration}>
+              <LicenseScene musicLicense={props.musicLicense} theme={licenseTheme} />
+            </TransitionSeries.Sequence>
+          </>
+        )}
       </TransitionSeries>
     </AbsoluteFill>
   );

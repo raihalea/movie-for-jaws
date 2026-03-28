@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, Img, staticFile } from "remotion";
 import { ScaleIn, FadeIn } from "./common/animations";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import type { ColorTheme } from "../types";
 
 const { fontFamily } = loadFont();
 
@@ -9,12 +10,14 @@ interface IntroSceneProps {
   jawsugIconUrl?: string;
   chapterIconUrl?: string;
   chapterName: string;
+  theme: ColorTheme;
 }
 
 export const IntroScene: React.FC<IntroSceneProps> = ({
   jawsugIconUrl,
   chapterIconUrl,
   chapterName,
+  theme,
 }) => {
   const jawsugSrc = jawsugIconUrl
     ? jawsugIconUrl.startsWith("http")
@@ -31,7 +34,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#1a1a2e",
+        backgroundColor: theme.backgroundColor,
         justifyContent: "center",
         alignItems: "center",
         fontFamily,
@@ -57,7 +60,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       <FadeIn delay={35} durationInFrames={20}>
         <div
           style={{
-            color: "#ffffff",
+            color: theme.textColor,
             fontSize: 48,
             fontWeight: 700,
             marginTop: 30,

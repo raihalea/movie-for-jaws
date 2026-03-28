@@ -2,21 +2,23 @@ import React from "react";
 import { AbsoluteFill } from "remotion";
 import { FadeIn } from "./common/animations";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
-import type { MusicLicense } from "../types";
+import type { MusicLicense, ColorTheme } from "../types";
 
 const { fontFamily } = loadFont();
 
 interface LicenseSceneProps {
   musicLicense: MusicLicense;
+  theme: ColorTheme;
 }
 
 export const LicenseScene: React.FC<LicenseSceneProps> = ({
   musicLicense,
+  theme,
 }) => {
   return (
     <AbsoluteFill
       style={{
-        backgroundColor: "#0f0f23",
+        backgroundColor: theme.gradientFrom,
         justifyContent: "center",
         alignItems: "center",
         fontFamily,
@@ -34,7 +36,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           </div>
           <div
             style={{
-              color: "#a0a0b0",
+              color: theme.mutedTextColor,
               fontSize: 28,
               marginBottom: 16,
             }}
@@ -43,7 +45,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           </div>
           <div
             style={{
-              color: "#ffffff",
+              color: theme.textColor,
               fontSize: 36,
               fontWeight: 700,
               marginBottom: 12,
@@ -53,7 +55,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           </div>
           <div
             style={{
-              color: "#a0a0b0",
+              color: theme.mutedTextColor,
               fontSize: 28,
               marginBottom: 20,
             }}
@@ -63,7 +65,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           {musicLicense.licenseType && (
             <div
               style={{
-                color: "#a0a0b0",
+                color: theme.mutedTextColor,
                 fontSize: 22,
                 marginBottom: 8,
               }}
@@ -74,7 +76,7 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
           {musicLicense.url && (
             <div
               style={{
-                color: "#666680",
+                color: theme.mutedTextColor,
                 fontSize: 20,
               }}
             >

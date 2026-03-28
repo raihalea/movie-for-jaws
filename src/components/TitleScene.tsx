@@ -1,14 +1,16 @@
 import React from "react";
 import { AbsoluteFill, spring, useCurrentFrame, useVideoConfig } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import type { ColorTheme } from "../types";
 
 const { fontFamily } = loadFont();
 
 interface TitleSceneProps {
   eventTitle: string;
+  theme: ColorTheme;
 }
 
-export const TitleScene: React.FC<TitleSceneProps> = ({ eventTitle }) => {
+export const TitleScene: React.FC<TitleSceneProps> = ({ eventTitle, theme }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
@@ -22,7 +24,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({ eventTitle }) => {
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%)",
+        background: `linear-gradient(135deg, ${theme.gradientFrom} 0%, ${theme.backgroundColor} 50%, ${theme.gradientTo} 100%)`,
         justifyContent: "center",
         alignItems: "center",
         fontFamily,
@@ -32,14 +34,14 @@ export const TitleScene: React.FC<TitleSceneProps> = ({ eventTitle }) => {
         style={{
           width: 800,
           height: 6,
-          backgroundColor: "#FF9900",
+          backgroundColor: theme.accentColor,
           marginBottom: 40,
           transform: `scaleX(${scale})`,
         }}
       />
       <div
         style={{
-          color: "#ffffff",
+          color: theme.textColor,
           fontSize: 72,
           fontWeight: 900,
           textAlign: "center",
@@ -56,7 +58,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({ eventTitle }) => {
         style={{
           width: 800,
           height: 6,
-          backgroundColor: "#FF9900",
+          backgroundColor: theme.accentColor,
           marginTop: 40,
           transform: `scaleX(${scale})`,
         }}
