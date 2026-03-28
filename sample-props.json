@@ -1,13 +1,13 @@
 {
-  "eventTitle": "JAWS-UG 東京 #50 LT大会",
-  "chapterName": "JAWS-UG 東京",
+  "eventTitle": "JAWS-UG 配信部 #50 LT大会",
+  "chapterName": "JAWS-UG 配信部",
   "speakers": [
     {
       "talkTitle": "AWS Lambda の最新アップデートについて",
       "speakers": [
         {
           "name": "山田 太郎",
-          "affiliation": "株式会社クラウドテック",
+          "affiliation": "株式会社配信テック",
           "photoUrl": "speaker-placeholder.svg"
         }
       ]
@@ -17,12 +17,27 @@
       "speakers": [
         {
           "name": "鈴木 花子",
-          "affiliation": "テックスタート株式会社",
+          "affiliation": "配信スタート株式会社",
           "photoUrl": "speaker-placeholder.svg"
         },
         {
           "name": "佐藤 一郎",
-          "affiliation": "株式会社デジタルソリューション",
+          "affiliation": "株式会社デジタ配信",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "AgentCoretとは? 最新の動向を紹介",
+      "speakers": [
+        {
+          "name": "Abc edf",
+          "affiliation": "配信スタート株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "佐藤 次郎",
+          "affiliation": "株式会社デジタ配信",
           "photoUrl": "speaker-placeholder.svg"
         }
       ]
@@ -32,17 +47,17 @@
       "speakers": [
         {
           "name": "田中 美咲",
-          "affiliation": "AWSジャパン合同会社",
+          "affiliation": "配信合同会社",
           "photoUrl": "speaker-placeholder.svg"
         },
         {
           "name": "高橋 健太",
-          "affiliation": "株式会社インフラボ",
+          "affiliation": "株式会社配信ラボ",
           "photoUrl": "speaker-placeholder.svg"
         },
         {
           "name": "渡辺 さくら",
-          "affiliation": "フリーランス",
+          "affiliation": "配信フリーランス",
           "photoUrl": "speaker-placeholder.svg"
         }
       ]
