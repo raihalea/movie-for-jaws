@@ -1,0 +1,51 @@
+{
+  "eventTitle": "JAWS-UG Osaka Re:Boot LT Night",
+  "chapterName": "JAWS-UG 大阪",
+  "speakers": [
+    {
+      "talkTitle": "AWS CDK で始めるインフラ自動化",
+      "speakers": [
+        {
+          "name": "中村 翔太",
+          "affiliation": "株式会社ネオクラウド",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "Amazon Bedrock 生成AI活用事例",
+      "speakers": [
+        {
+          "name": "木村 あかり",
+          "affiliation": "AIテック株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "松本 大輝",
+          "affiliation": "株式会社クラウドファースト",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    }
+  ],
+  "hashtag": "#jawsug_osaka",
+  "musicLicense": {
+    "title": "Digital Horizon",
+    "artist": "Neon Pulse",
+    "licenseType": "CC BY-SA 4.0"
+  },
+  "musicDurationInSeconds": 60,
+  "theme": {
+    "backgroundColor": "#0a0a1a",
+    "accentColor": "#00ff88",
+    "textColor": "#e0ffe0",
+    "mutedTextColor": "#80c0a0",
+    "gradientFrom": "#001100",
+    "gradientTo": "#0a1a0a"
+  },
+  "introEffect": "fadeSlide",
+  "titleEffect": "glitch",
+  "speakerEffect": "slideFromSides",
+  "hashtagEffect": "pulseGlow",
+  "licenseEffect": "slideUp"
+}

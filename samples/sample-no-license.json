@@ -1,0 +1,37 @@
+{
+  "eventTitle": "JAWS-UG Sapporo Winter Special",
+  "chapterName": "JAWS-UG 札幌",
+  "speakers": [
+    {
+      "talkTitle": "Amazon EKS 運用のベストプラクティス",
+      "speakers": [
+        {
+          "name": "高田 雪乃",
+          "affiliation": "株式会社ノーススター",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "AWS Security Hub で実現するセキュリティ監視",
+      "speakers": [
+        {
+          "name": "佐々木 隼人",
+          "affiliation": "セキュアクラウド株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "石田 あゆみ",
+          "affiliation": "株式会社ウィンターテック",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    }
+  ],
+  "hashtag": "#jawsug_sapporo",
+  "musicDurationInSeconds": 50,
+  "introEffect": "fadeSlide",
+  "titleEffect": "springScale",
+  "speakerEffect": "fadeStagger",
+  "hashtagEffect": "springBounce"
+}

@@ -62,6 +62,19 @@ const defaultProps: JawsUgLTProps = {
     url: "https://example.com/license",
   },
   musicDurationInSeconds: 75,
+  theme: {
+    backgroundColor: "#1a1a2e",
+    accentColor: "#FF9900",
+    textColor: "#ffffff",
+    mutedTextColor: "#a0a0b0",
+    gradientFrom: "#0f0f23",
+    gradientTo: "#16213e",
+  },
+  introEffect: "scaleIn",
+  titleEffect: "springScale",
+  speakerEffect: "springCards",
+  hashtagEffect: "springBounce",
+  licenseEffect: "fadeIn",
 };
 
 const calculateMetadata: CalculateMetadataFunction<JawsUgLTProps> = ({
