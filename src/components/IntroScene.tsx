@@ -6,7 +6,7 @@ import {
   useCurrentFrame,
   interpolate,
 } from "remotion";
-import { ScaleIn, FadeIn } from "./common/animations";
+import { ScaleIn, FadeIn, ParticleField, RippleRing } from "./common/animations";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
 import type { ColorTheme, IntroEffect } from "../types";
 
@@ -220,6 +220,75 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     );
   };
 
+  const renderParticle = () => {
+    const contentDelay = 20;
+    const contentOpacity = interpolate(frame, [contentDelay, contentDelay + 15], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    const contentScale = interpolate(frame, [contentDelay, contentDelay + 20], [0.6, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+
+    return (
+      <>
+        <ParticleField color={theme.accentColor} width={1920} height={1080} count={14} />
+        <div
+          style={{
+            opacity: contentOpacity,
+            transform: `scale(${contentScale})`,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            zIndex: 1,
+          }}
+        >
+          {renderJawsugIcon()}
+          {renderChapterIcon()}
+          {eventDate && (
+            <div style={{ color: theme.mutedTextColor, fontSize: 44, marginTop: 16, textAlign: "center" }}>
+              {eventDate}
+            </div>
+          )}
+        </div>
+      </>
+    );
+  };
+
+  const renderRipple = () => {
+    const contentOpacity = interpolate(frame, [15, 30], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+
+    return (
+      <>
+        <RippleRing delay={0} maxSize={900} color={theme.accentColor} thickness={3} />
+        <RippleRing delay={8} maxSize={700} color={theme.accentColor} thickness={2} />
+        <RippleRing delay={16} maxSize={500} color={theme.accentColor} thickness={2} />
+        <RippleRing delay={24} maxSize={400} color={theme.accentColor} thickness={1} />
+        <div
+          style={{
+            opacity: contentOpacity,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            zIndex: 1,
+          }}
+        >
+          {renderJawsugIcon()}
+          {renderChapterIcon()}
+          {eventDate && (
+            <div style={{ color: theme.mutedTextColor, fontSize: 44, marginTop: 16, textAlign: "center" }}>
+              {eventDate}
+            </div>
+          )}
+        </div>
+      </>
+    );
+  };
+
   return (
     <AbsoluteFill
       style={{
@@ -232,6 +301,8 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       {effect === "scaleIn" && renderScaleIn()}
       {effect === "fadeSlide" && renderFadeSlide()}
       {effect === "typewriter" && renderTypewriter()}
+      {effect === "particle" && renderParticle()}
+      {effect === "ripple" && renderRipple()}
     </AbsoluteFill>
   );
 };

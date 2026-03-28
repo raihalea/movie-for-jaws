@@ -1,0 +1,73 @@
+{
+  "eventTitle": "JAWS-UG 名古屋 Cloud Innovation Day",
+  "chapterName": "JAWS-UG 名古屋",
+  "eventDate": "2025-04-18",
+  "speakers": [
+    {
+      "talkTitle": "Amazon Q Developer で加速するクラウド開発",
+      "speakers": [
+        {
+          "name": "西村 雄介",
+          "affiliation": "株式会社イノベーションラボ",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "AWS Graviton4 移行の実践ガイド",
+      "speakers": [
+        {
+          "name": "石田 真理",
+          "affiliation": "クラウドアーキテクト株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "藤田 航平",
+          "affiliation": "株式会社プラットフォームズ",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "サーバーレスで実現するリアルタイムデータ処理",
+      "speakers": [
+        {
+          "name": "中島 あゆみ",
+          "affiliation": "データフロー株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "加藤 大地",
+          "affiliation": "株式会社ストリームテック",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "林 さやか",
+          "affiliation": "フリーランス",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    }
+  ],
+  "hashtag": "#jawsug_nagoya",
+  "musicLicense": {
+    "title": "Crystal Waves",
+    "artist": "Pastel Dreams",
+    "licenseType": "CC BY 4.0",
+    "url": "https://example.com/crystal-waves"
+  },
+  "musicDurationInSeconds": 60,
+  "theme": {
+    "backgroundColor": "#e8daf5",
+    "accentColor": "#9b59b6",
+    "textColor": "#2a1a3a",
+    "mutedTextColor": "#6a5580",
+    "gradientFrom": "#d4c0e8",
+    "gradientTo": "#f0e6f8"
+  },
+  "introEffect": "particle",
+  "titleEffect": "cinematic",
+  "speakerEffect": "flipCards",
+  "hashtagEffect": "shockwave",
+  "licenseEffect": "filmCredits"
+}
