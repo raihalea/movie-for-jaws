@@ -36,12 +36,12 @@
   },
   "musicDurationInSeconds": 60,
   "theme": {
-    "backgroundColor": "#0a0a1a",
+    "backgroundColor": "#1a2a2e",
     "accentColor": "#00ff88",
     "textColor": "#e0ffe0",
-    "mutedTextColor": "#80c0a0",
-    "gradientFrom": "#001100",
-    "gradientTo": "#0a1a0a"
+    "mutedTextColor": "#a0d8c0",
+    "gradientFrom": "#0e2a15",
+    "gradientTo": "#1a3a20"
   },
   "introEffect": "fadeSlide",
   "titleEffect": "glitch",
