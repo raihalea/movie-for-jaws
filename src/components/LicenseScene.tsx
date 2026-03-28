@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 import { FadeIn, SlideUp } from "./common/animations";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
 import type { MusicLicense, ColorTheme, LicenseEffect } from "../types";
@@ -26,6 +26,137 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
   const artistChars = Math.min(artistText.length, Math.max(0, Math.floor((frame - 40) / 2)));
 
   const renderContent = () => {
+    if (effect === 'filmCredits') {
+      const translateY = interpolate(frame, [0, 50], [300, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+      const opacity = interpolate(frame, [0, 20], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+      return (
+        <div style={{ textAlign: "center", transform: `translateY(${translateY}px)`, opacity }}>
+          <div
+            style={{
+              fontSize: 110,
+              marginBottom: 40,
+            }}
+          >
+            ♪
+          </div>
+          <div
+            style={{
+              color: theme.mutedTextColor,
+              fontSize: 48,
+              marginBottom: 16,
+            }}
+          >
+            Music
+          </div>
+          <div
+            style={{
+              color: theme.textColor,
+              fontSize: 64,
+              fontWeight: 700,
+              marginBottom: 12,
+            }}
+          >
+            {musicLicense.title}
+          </div>
+          <div
+            style={{
+              color: theme.mutedTextColor,
+              fontSize: 50,
+              marginBottom: 20,
+            }}
+          >
+            {artistText}
+          </div>
+          {musicLicense.licenseType && (
+            <div
+              style={{
+                color: theme.mutedTextColor,
+                fontSize: 40,
+                marginBottom: 8,
+              }}
+            >
+              {musicLicense.licenseType}
+            </div>
+          )}
+          {musicLicense.url && (
+            <div
+              style={{
+                color: theme.mutedTextColor,
+                fontSize: 38,
+              }}
+            >
+              {musicLicense.url}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    if (effect === 'spotlight') {
+      const clipProgress = interpolate(frame, [0, 40], [0, 100], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' });
+      return (
+        <div style={{ textAlign: "center", clipPath: `circle(${clipProgress}% at 50% 40%)` }}>
+          <div
+            style={{
+              fontSize: 110,
+              marginBottom: 40,
+            }}
+          >
+            ♪
+          </div>
+          <div
+            style={{
+              color: theme.mutedTextColor,
+              fontSize: 48,
+              marginBottom: 16,
+            }}
+          >
+            Music
+          </div>
+          <div
+            style={{
+              color: theme.textColor,
+              fontSize: 64,
+              fontWeight: 700,
+              marginBottom: 12,
+            }}
+          >
+            {musicLicense.title}
+          </div>
+          <div
+            style={{
+              color: theme.mutedTextColor,
+              fontSize: 50,
+              marginBottom: 20,
+            }}
+          >
+            {artistText}
+          </div>
+          {musicLicense.licenseType && (
+            <div
+              style={{
+                color: theme.mutedTextColor,
+                fontSize: 40,
+                marginBottom: 8,
+              }}
+            >
+              {musicLicense.licenseType}
+            </div>
+          )}
+          {musicLicense.url && (
+            <div
+              style={{
+                color: theme.mutedTextColor,
+                fontSize: 38,
+              }}
+            >
+              {musicLicense.url}
+            </div>
+          )}
+        </div>
+      );
+    }
+
     if (effect === 'typewriter') {
       return (
         <div style={{ textAlign: "center" }}>
