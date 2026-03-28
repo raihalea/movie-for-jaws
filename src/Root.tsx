@@ -1,8 +1,10 @@
 import React from "react";
-import { Composition } from "remotion";
+import { Composition, staticFile } from "remotion";
 import { JawsUgLT } from "./compositions/JawsUgLT";
 import type { JawsUgLTProps } from "./types";
 import type { CalculateMetadataFunction } from "remotion";
+import { getAudioDurationInSeconds } from "@remotion/media-utils";
+import { DEFAULT_MUSIC_DURATION_SECONDS } from "./utils/timing";
 
 const defaultProps: JawsUgLTProps = {
   eventTitle: "JAWS-UG 東京 #50 LT大会",
@@ -61,7 +63,6 @@ const defaultProps: JawsUgLTProps = {
     licenseType: "CC BY 4.0",
     url: "https://example.com/license",
   },
-  musicDurationInSeconds: 75,
   theme: {
     backgroundColor: "#1a1a2e",
     accentColor: "#FF9900",
@@ -77,11 +78,27 @@ const defaultProps: JawsUgLTProps = {
   licenseEffect: "fadeIn",
 };
 
-const calculateMetadata: CalculateMetadataFunction<JawsUgLTProps> = ({
+const calculateMetadata: CalculateMetadataFunction<JawsUgLTProps> = async ({
   props,
 }) => {
+  let musicDuration = props.musicDurationInSeconds;
+
+  if (musicDuration == null && props.musicUrl) {
+    musicDuration = await getAudioDurationInSeconds(
+      staticFile(props.musicUrl),
+    );
+  }
+
+  if (musicDuration == null) {
+    musicDuration = DEFAULT_MUSIC_DURATION_SECONDS;
+  }
+
   return {
-    durationInFrames: Math.round(props.musicDurationInSeconds * 30),
+    durationInFrames: Math.round(musicDuration * 30),
+    props: {
+      ...props,
+      musicDurationInSeconds: musicDuration,
+    },
   };
 };
 

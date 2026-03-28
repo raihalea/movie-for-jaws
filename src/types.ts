@@ -41,7 +41,7 @@ export type JawsUgLTProps = {
   speakers: SpeakerGroup[];
   hashtag: string;
   musicLicense?: MusicLicense;
-  musicDurationInSeconds: number;
+  musicDurationInSeconds?: number;
   musicUrl?: string;
   theme?: ColorTheme;
   introTheme?: Partial<ColorTheme>;
