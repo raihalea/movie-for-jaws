@@ -1,6 +1,7 @@
 {
   "eventTitle": "JAWS-UG Nagoya Tech Meetup #12",
   "chapterName": "JAWS-UG 名古屋",
+  "eventDate": "2025-04-05",
   "speakers": [
     {
       "talkTitle": "AWS AppSync でリアルタイムアプリ開発",
