@@ -114,10 +114,10 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     jawsugSrc ? (
       <Img
         src={jawsugSrc}
-        style={{ width: 240, height: 240, objectFit: "contain" }}
+        style={{ width: 300, height: 300, objectFit: "contain" }}
       />
     ) : (
-      <JawsUgIcon size={240} accentColor={theme.accentColor} />
+      <JawsUgIcon size={300} accentColor={theme.accentColor} />
     );
 
   const renderChapterIcon = () =>
@@ -125,15 +125,15 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       <Img
         src={chapterSrc}
         style={{
-          width: 120,
-          height: 120,
+          width: 150,
+          height: 150,
           objectFit: "contain",
           marginTop: 30,
         }}
       />
     ) : (
       <div style={{ marginTop: 30 }}>
-        <ChapterIcon size={120} />
+        <ChapterIcon size={150} />
       </div>
     );
 
@@ -147,7 +147,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
         <div
           style={{
             color: theme.textColor,
-            fontSize: 48,
+            fontSize: 60,
             fontWeight: 700,
             marginTop: 30,
             textAlign: "center",
@@ -201,10 +201,10 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
           {chapterSrc ? (
             <Img
               src={chapterSrc}
-              style={{ width: 120, height: 120, objectFit: "contain" }}
+              style={{ width: 150, height: 150, objectFit: "contain" }}
             />
           ) : (
-            <ChapterIcon size={120} />
+            <ChapterIcon size={150} />
           )}
         </div>
         <div
@@ -212,7 +212,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
             transform: `translateX(${textTranslateX}px)`,
             opacity: textOpacity,
             color: theme.textColor,
-            fontSize: 48,
+            fontSize: 60,
             fontWeight: 700,
             marginTop: 30,
             textAlign: "center",
@@ -239,7 +239,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
         <div
           style={{
             color: theme.textColor,
-            fontSize: 48,
+            fontSize: 60,
             fontWeight: 700,
             marginTop: 30,
             textAlign: "center",

@@ -41,8 +41,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
     <>
       <div
         style={{
-          width: 800,
-          height: 6,
+          width: 900,
+          height: 8,
           backgroundColor: theme.accentColor,
           marginBottom: 40,
           transform: `scaleX(${scale})`,
@@ -51,7 +51,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       <div
         style={{
           color: theme.textColor,
-          fontSize: 72,
+          fontSize: 90,
           fontWeight: 900,
           textAlign: "center",
           maxWidth: 1400,
@@ -65,8 +65,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       </div>
       <div
         style={{
-          width: 800,
-          height: 6,
+          width: 900,
+          height: 8,
           backgroundColor: theme.accentColor,
           marginTop: 40,
           transform: `scaleX(${scale})`,
@@ -83,8 +83,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       <>
         <div
           style={{
-            width: 800,
-            height: 6,
+            width: 900,
+            height: 8,
             backgroundColor: theme.accentColor,
             marginBottom: 40,
             transform: `scaleX(${scale})`,
@@ -97,7 +97,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
               top: 0,
               left: 0,
               color: theme.textColor,
-              fontSize: 72,
+              fontSize: 90,
               fontWeight: 900,
               textAlign: "center",
               maxWidth: 1400,
@@ -116,7 +116,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
               top: 0,
               left: 0,
               color: theme.textColor,
-              fontSize: 72,
+              fontSize: 90,
               fontWeight: 900,
               textAlign: "center",
               maxWidth: 1400,
@@ -133,7 +133,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
             style={{
               position: "relative",
               color: theme.textColor,
-              fontSize: 72,
+              fontSize: 90,
               fontWeight: 900,
               textAlign: "center",
               maxWidth: 1400,
@@ -146,8 +146,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
         </div>
         <div
           style={{
-            width: 800,
-            height: 6,
+            width: 900,
+            height: 8,
             backgroundColor: theme.accentColor,
             marginTop: 40,
             transform: `scaleX(${scale})`,
@@ -171,8 +171,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
         >
           <div
             style={{
-              width: 800,
-              height: 6,
+              width: 900,
+              height: 8,
               backgroundColor: theme.accentColor,
               marginBottom: 40,
             }}
@@ -180,7 +180,7 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
           <div
             style={{
               color: theme.textColor,
-              fontSize: 72,
+              fontSize: 90,
               fontWeight: 900,
               textAlign: "center",
               maxWidth: 1400,
@@ -192,8 +192,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
           </div>
           <div
             style={{
-              width: 800,
-              height: 6,
+              width: 900,
+              height: 8,
               backgroundColor: theme.accentColor,
               marginTop: 40,
             }}
