@@ -41,8 +41,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
     <>
       <div
         style={{
-          width: 900,
-          height: 8,
+          width: 1100,
+          height: 10,
           backgroundColor: theme.accentColor,
           marginBottom: 40,
           transform: `scaleX(${scale})`,
@@ -51,10 +51,10 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       <div
         style={{
           color: theme.textColor,
-          fontSize: 90,
+          fontSize: 120,
           fontWeight: 900,
           textAlign: "center",
-          maxWidth: 1400,
+          maxWidth: 1600,
           lineHeight: 1.3,
           transform: `scale(${scale})`,
           opacity,
@@ -65,8 +65,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       </div>
       <div
         style={{
-          width: 900,
-          height: 8,
+          width: 1100,
+          height: 10,
           backgroundColor: theme.accentColor,
           marginTop: 40,
           transform: `scaleX(${scale})`,
@@ -83,8 +83,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       <>
         <div
           style={{
-            width: 900,
-            height: 8,
+            width: 1100,
+            height: 10,
             backgroundColor: theme.accentColor,
             marginBottom: 40,
             transform: `scaleX(${scale})`,
@@ -97,10 +97,10 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
               top: 0,
               left: 0,
               color: theme.textColor,
-              fontSize: 90,
+              fontSize: 120,
               fontWeight: 900,
               textAlign: "center",
-              maxWidth: 1400,
+              maxWidth: 1600,
               lineHeight: 1.3,
               padding: "0 60px",
               transform: `translateX(${redOffset}px)`,
@@ -116,10 +116,10 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
               top: 0,
               left: 0,
               color: theme.textColor,
-              fontSize: 90,
+              fontSize: 120,
               fontWeight: 900,
               textAlign: "center",
-              maxWidth: 1400,
+              maxWidth: 1600,
               lineHeight: 1.3,
               padding: "0 60px",
               transform: `translateX(${cyanOffset}px)`,
@@ -133,10 +133,10 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
             style={{
               position: "relative",
               color: theme.textColor,
-              fontSize: 90,
+              fontSize: 120,
               fontWeight: 900,
               textAlign: "center",
-              maxWidth: 1400,
+              maxWidth: 1600,
               lineHeight: 1.3,
               padding: "0 60px",
             }}
@@ -146,8 +146,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
         </div>
         <div
           style={{
-            width: 900,
-            height: 8,
+            width: 1100,
+            height: 10,
             backgroundColor: theme.accentColor,
             marginTop: 40,
             transform: `scaleX(${scale})`,
@@ -171,8 +171,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
         >
           <div
             style={{
-              width: 900,
-              height: 8,
+              width: 1100,
+              height: 10,
               backgroundColor: theme.accentColor,
               marginBottom: 40,
             }}
@@ -180,10 +180,10 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
           <div
             style={{
               color: theme.textColor,
-              fontSize: 90,
+              fontSize: 120,
               fontWeight: 900,
               textAlign: "center",
-              maxWidth: 1400,
+              maxWidth: 1600,
               lineHeight: 1.3,
               padding: "0 60px",
             }}
@@ -192,8 +192,8 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
           </div>
           <div
             style={{
-              width: 900,
-              height: 8,
+              width: 1100,
+              height: 10,
               backgroundColor: theme.accentColor,
               marginTop: 40,
             }}

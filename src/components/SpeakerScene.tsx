@@ -100,7 +100,7 @@ const SpeakerCard: React.FC<{
           height: photoSize,
           borderRadius: "50%",
           overflow: "hidden",
-          border: `4px solid ${theme.accentColor}`,
+          border: `5px solid ${theme.accentColor}`,
           transform: `scale(${photoScale})`,
         }}
       >
@@ -163,9 +163,9 @@ const OneSpeakerLayout: React.FC<{
         frame={frame}
         fps={fps}
         delay={5}
-        photoSize={340}
-        nameSize={64}
-        affiliationSize={40}
+        photoSize={440}
+        nameSize={88}
+        affiliationSize={58}
         theme={theme}
         effect={effect}
         cardIndex={0}
@@ -173,10 +173,10 @@ const OneSpeakerLayout: React.FC<{
       <div
         style={{
           color: theme.accentColor,
-          fontSize: 50,
+          fontSize: 72,
           fontWeight: 700,
           textAlign: "center",
-          maxWidth: 1200,
+          maxWidth: 1500,
           opacity: titleOpacity,
           padding: "0 80px",
         }}
@@ -221,9 +221,9 @@ const TwoSpeakerLayout: React.FC<{
             frame={frame}
             fps={fps}
             delay={5 + i * 10}
-            photoSize={270}
-            nameSize={54}
-            affiliationSize={34}
+            photoSize={360}
+            nameSize={76}
+            affiliationSize={50}
             theme={theme}
             effect={effect}
             cardIndex={i}
@@ -233,10 +233,10 @@ const TwoSpeakerLayout: React.FC<{
       <div
         style={{
           color: theme.accentColor,
-          fontSize: 46,
+          fontSize: 66,
           fontWeight: 700,
           textAlign: "center",
-          maxWidth: 1400,
+          maxWidth: 1600,
           opacity: titleOpacity,
           padding: "0 80px",
         }}
@@ -281,9 +281,9 @@ const ThreeSpeakerLayout: React.FC<{
             frame={frame}
             fps={fps}
             delay={5 + i * 8}
-            photoSize={220}
-            nameSize={44}
-            affiliationSize={30}
+            photoSize={290}
+            nameSize={62}
+            affiliationSize={44}
             theme={theme}
             effect={effect}
             cardIndex={i}
@@ -293,10 +293,10 @@ const ThreeSpeakerLayout: React.FC<{
       <div
         style={{
           color: theme.accentColor,
-          fontSize: 44,
+          fontSize: 62,
           fontWeight: 700,
           textAlign: "center",
-          maxWidth: 1500,
+          maxWidth: 1700,
           opacity: titleOpacity,
           padding: "0 60px",
         }}
