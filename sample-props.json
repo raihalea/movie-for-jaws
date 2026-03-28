@@ -70,7 +70,6 @@
     "licenseType": "CC BY 4.0",
     "url": "https://example.com/license"
   },
-  "musicDurationInSeconds": 75,
   "theme": {
     "backgroundColor": "#1a1a2e",
     "accentColor": "#FF9900",
