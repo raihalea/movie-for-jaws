@@ -82,5 +82,6 @@
   "titleEffect": "springScale",
   "speakerEffect": "springCards",
   "hashtagEffect": "springBounce",
-  "licenseEffect": "fadeIn"
+  "licenseEffect": "fadeIn",
+  "musicUrl": "bgm.mp3"
 }
