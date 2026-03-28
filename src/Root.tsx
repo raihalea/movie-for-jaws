@@ -9,6 +9,7 @@ import { DEFAULT_MUSIC_DURATION_SECONDS } from "./utils/timing";
 const defaultProps: JawsUgLTProps = {
   eventTitle: "JAWS-UG 東京 #50 LT大会",
   chapterName: "JAWS-UG 東京",
+  eventDate: "2025-01-15",
   speakers: [
     {
       talkTitle: "AWS Lambda の最新アップデートについて",

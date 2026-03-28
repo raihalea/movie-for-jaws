@@ -1,6 +1,7 @@
 {
   "eventTitle": "JAWS-UG Sapporo Winter Special",
   "chapterName": "JAWS-UG 札幌",
+  "eventDate": "2025-05-15",
   "speakers": [
     {
       "talkTitle": "Amazon EKS 運用のベストプラクティス",

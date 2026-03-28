@@ -1,6 +1,7 @@
 {
   "eventTitle": "JAWS-UG Fukuoka Cloud Deep Dive",
   "chapterName": "JAWS-UG 福岡",
+  "eventDate": "2025-03-10",
   "speakers": [
     {
       "talkTitle": "AWS Step Functions ワークフロー設計パターン",

@@ -36,6 +36,7 @@ export type LicenseEffect = 'fadeIn' | 'slideUp' | 'typewriter';
 export type JawsUgLTProps = {
   eventTitle: string;
   chapterName: string;
+  eventDate?: string;
   jawsugIconUrl?: string;
   chapterIconUrl?: string;
   speakers: SpeakerGroup[];

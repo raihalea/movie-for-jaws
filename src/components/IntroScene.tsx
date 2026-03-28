@@ -20,8 +20,6 @@ const JawsUgIcon: React.FC<{ size: number; accentColor: string }> = ({
     style={{
       width: size,
       height: size,
-      borderRadius: "50%",
-      backgroundColor: accentColor,
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -30,7 +28,7 @@ const JawsUgIcon: React.FC<{ size: number; accentColor: string }> = ({
   >
     <div
       style={{
-        color: "#ffffff",
+        color: accentColor,
         fontSize: size * 0.14,
         fontWeight: "bold",
         fontFamily: "Arial, sans-serif",
@@ -41,7 +39,7 @@ const JawsUgIcon: React.FC<{ size: number; accentColor: string }> = ({
     </div>
     <div
       style={{
-        color: "#ffffff",
+        color: accentColor,
         fontSize: size * 0.14,
         fontWeight: "bold",
         fontFamily: "Arial, sans-serif",
@@ -61,8 +59,6 @@ const ChapterIcon: React.FC<{ size: number; text?: string }> = ({
     style={{
       width: size,
       height: size,
-      borderRadius: "50%",
-      backgroundColor: "#3b82f6",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -70,7 +66,7 @@ const ChapterIcon: React.FC<{ size: number; text?: string }> = ({
   >
     <div
       style={{
-        color: "#ffffff",
+        color: "#3b82f6",
         fontSize: size * 0.12,
         fontWeight: "bold",
         fontFamily: "Arial, sans-serif",
@@ -85,6 +81,7 @@ interface IntroSceneProps {
   jawsugIconUrl?: string;
   chapterIconUrl?: string;
   chapterName: string;
+  eventDate?: string;
   theme: ColorTheme;
   effect?: IntroEffect;
 }
@@ -93,6 +90,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
   jawsugIconUrl,
   chapterIconUrl,
   chapterName,
+  eventDate,
   theme,
   effect = "scaleIn",
 }) => {
@@ -143,19 +141,13 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       <FadeIn delay={20} durationInFrames={20}>
         {renderChapterIcon()}
       </FadeIn>
-      <FadeIn delay={35} durationInFrames={20}>
-        <div
-          style={{
-            color: theme.textColor,
-            fontSize: 60,
-            fontWeight: 700,
-            marginTop: 30,
-            textAlign: "center",
-          }}
-        >
-          {chapterName}
-        </div>
-      </FadeIn>
+      {eventDate && (
+        <FadeIn delay={35} durationInFrames={20}>
+          <div style={{ color: theme.mutedTextColor, fontSize: 28, marginTop: 16, textAlign: "center" }}>
+            {eventDate}
+          </div>
+        </FadeIn>
+      )}
     </>
   );
 
@@ -173,14 +165,6 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       clampConfig,
     );
     const chapterOpacity = interpolate(frame, [15, 35], [0, 1], clampConfig);
-    const textTranslateX = interpolate(
-      frame,
-      [30, 50],
-      [-100, 0],
-      clampConfig,
-    );
-    const textOpacity = interpolate(frame, [30, 50], [0, 1], clampConfig);
-
     return (
       <>
         <div
@@ -207,46 +191,31 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
             <ChapterIcon size={150} />
           )}
         </div>
-        <div
-          style={{
-            transform: `translateX(${textTranslateX}px)`,
-            opacity: textOpacity,
-            color: theme.textColor,
-            fontSize: 60,
-            fontWeight: 700,
-            marginTop: 30,
-            textAlign: "center",
-          }}
-        >
-          {chapterName}
-        </div>
+        {eventDate && (
+          <div style={{ transform: `translateX(${chapterTranslateX}px)`, opacity: chapterOpacity, marginTop: 16 }}>
+            <div style={{ color: theme.mutedTextColor, fontSize: 28, textAlign: "center" }}>
+              {eventDate}
+            </div>
+          </div>
+        )}
       </>
     );
   };
 
   const renderTypewriter = () => {
-    const visibleChars = Math.min(
-      chapterName.length,
-      Math.max(0, Math.floor((frame - 35) / 2)),
-    );
-
     return (
       <>
         <ScaleIn>{renderJawsugIcon()}</ScaleIn>
         <ScaleIn delay={15}>
           {renderChapterIcon()}
         </ScaleIn>
-        <div
-          style={{
-            color: theme.textColor,
-            fontSize: 60,
-            fontWeight: 700,
-            marginTop: 30,
-            textAlign: "center",
-          }}
-        >
-          {chapterName.slice(0, visibleChars)}
-        </div>
+        {eventDate && (
+          <ScaleIn delay={15}>
+            <div style={{ color: theme.mutedTextColor, fontSize: 28, marginTop: 16, textAlign: "center" }}>
+              {eventDate}
+            </div>
+          </ScaleIn>
+        )}
       </>
     );
   };

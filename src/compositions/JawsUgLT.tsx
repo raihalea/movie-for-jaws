@@ -37,6 +37,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
             jawsugIconUrl={props.jawsugIconUrl}
             chapterIconUrl={props.chapterIconUrl}
             chapterName={props.chapterName}
+            eventDate={props.eventDate}
             theme={introTheme}
             effect={props.introEffect}
           />
