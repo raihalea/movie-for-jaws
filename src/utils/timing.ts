@@ -1,5 +1,7 @@
 import type { JawsUgLTProps } from "../types";
 
+export const DEFAULT_MUSIC_DURATION_SECONDS = 60;
+
 export interface SceneDurations {
   introDuration: number;
   titleDuration: number;
@@ -13,7 +15,7 @@ export function calculateSceneDurations(
   props: JawsUgLTProps,
   fps: number,
 ): SceneDurations {
-  const totalFrames = Math.round(props.musicDurationInSeconds * fps);
+  const totalFrames = Math.round((props.musicDurationInSeconds ?? DEFAULT_MUSIC_DURATION_SECONDS) * fps);
   const transitionDuration = 15;
 
   const introDuration = Math.round(3 * fps);

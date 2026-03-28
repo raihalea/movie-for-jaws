@@ -54,6 +54,5 @@
     "artist": "Sample Artist",
     "licenseType": "CC BY 4.0",
     "url": "https://example.com/license"
-  },
-  "musicDurationInSeconds": 75
+  }
 }
