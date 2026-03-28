@@ -1,0 +1,62 @@
+{
+  "eventTitle": "JAWS-UG Nagoya Tech Meetup #12",
+  "chapterName": "JAWS-UG 名古屋",
+  "speakers": [
+    {
+      "talkTitle": "AWS AppSync でリアルタイムアプリ開発",
+      "speakers": [
+        {
+          "name": "加藤 真一",
+          "affiliation": "モバイルテック株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "Amazon SageMaker で始めるMLOps",
+      "speakers": [
+        {
+          "name": "森田 由美",
+          "affiliation": "株式会社AIラボ",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "岡田 直樹",
+          "affiliation": "データサイエンス株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    }
+  ],
+  "hashtag": "#jawsug_nagoya",
+  "musicLicense": {
+    "title": "Blue Horizon",
+    "artist": "Crystal Waves"
+  },
+  "musicDurationInSeconds": 70,
+  "theme": {
+    "backgroundColor": "#0a0f1a",
+    "accentColor": "#4da6ff",
+    "textColor": "#e0f0ff",
+    "mutedTextColor": "#8090b0",
+    "gradientFrom": "#000a1a",
+    "gradientTo": "#0a1a2e"
+  },
+  "introTheme": {
+    "accentColor": "#ff4da6",
+    "backgroundColor": "#1a0a15"
+  },
+  "speakerTheme": {
+    "accentColor": "#ffd700",
+    "mutedTextColor": "#b0a080"
+  },
+  "hashtagTheme": {
+    "accentColor": "#00ffcc",
+    "gradientFrom": "#001a14"
+  },
+  "introEffect": "scaleIn",
+  "titleEffect": "glitch",
+  "speakerEffect": "springCards",
+  "hashtagEffect": "pulseGlow",
+  "licenseEffect": "slideUp"
+}

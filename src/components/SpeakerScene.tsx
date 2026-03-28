@@ -2,19 +2,22 @@ import React from "react";
 import {
   AbsoluteFill,
   Img,
+  interpolate,
   spring,
   staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
-import type { SpeakerGroup, Speaker } from "../types";
+import type { SpeakerGroup, Speaker, ColorTheme, SpeakerEffect } from "../types";
 
 const { fontFamily } = loadFont();
 
 interface SpeakerSceneProps {
   speakerGroup: SpeakerGroup;
   index: number;
+  theme: ColorTheme;
+  effect?: SpeakerEffect;
 }
 
 const getSpeakerImgSrc = (photoUrl: string): string => {
@@ -32,38 +35,72 @@ const SpeakerCard: React.FC<{
   photoSize: number;
   nameSize: number;
   affiliationSize: number;
-}> = ({ speaker, frame, fps, delay, photoSize, nameSize, affiliationSize }) => {
-  const photoScale = spring({
-    fps,
-    frame: Math.max(0, frame - delay),
-    config: { damping: 12, stiffness: 100, mass: 0.5 },
-  });
-  const nameScale = spring({
-    fps,
-    frame: Math.max(0, frame - delay - 8),
-    config: { damping: 14, stiffness: 80, mass: 0.6 },
-  });
-  const affiliationOpacity = Math.min(
-    1,
-    Math.max(0, (frame - delay - 15) / 10),
-  );
+  theme: ColorTheme;
+  effect?: SpeakerEffect;
+  cardIndex?: number;
+}> = ({ speaker, frame, fps, delay, photoSize, nameSize, affiliationSize, theme, effect = 'springCards', cardIndex = 0 }) => {
+  // springCards: original spring-based animation
+  const photoScale = effect === 'springCards'
+    ? spring({
+        fps,
+        frame: Math.max(0, frame - delay),
+        config: { damping: 12, stiffness: 100, mass: 0.5 },
+      })
+    : 1;
+  const nameScale = effect === 'springCards'
+    ? spring({
+        fps,
+        frame: Math.max(0, frame - delay - 8),
+        config: { damping: 14, stiffness: 80, mass: 0.6 },
+      })
+    : 1;
+  const affiliationOpacity = effect === 'springCards'
+    ? Math.min(1, Math.max(0, (frame - delay - 15) / 10))
+    : 1;
+
+  // slideFromSides: cards slide in from alternating sides
+  const fromLeft = cardIndex % 2 === 0;
+  const slideTranslateX = effect === 'slideFromSides'
+    ? interpolate(frame, [delay, delay + 20], [fromLeft ? -200 : 200, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 0;
+  const slideOpacity = effect === 'slideFromSides'
+    ? interpolate(frame, [delay, delay + 20], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 1;
+
+  // fadeStagger: staggered fade-in with upward motion
+  const staggerDelay = effect === 'fadeStagger' ? cardIndex * 12 : 0;
+  const fadeOpacity = effect === 'fadeStagger'
+    ? interpolate(frame, [staggerDelay, staggerDelay + 20], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 1;
+  const fadeTranslateY = effect === 'fadeStagger'
+    ? interpolate(frame, [staggerDelay, staggerDelay + 20], [30, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 0;
+
+  // Compute wrapper styles based on effect
+  const wrapperStyle: React.CSSProperties = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 16,
+  };
+
+  if (effect === 'slideFromSides') {
+    wrapperStyle.transform = `translateX(${slideTranslateX}px)`;
+    wrapperStyle.opacity = slideOpacity;
+  } else if (effect === 'fadeStagger') {
+    wrapperStyle.transform = `translateY(${fadeTranslateY}px)`;
+    wrapperStyle.opacity = fadeOpacity;
+  }
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 16,
-      }}
-    >
+    <div style={wrapperStyle}>
       <div
         style={{
           width: photoSize,
           height: photoSize,
           borderRadius: "50%",
           overflow: "hidden",
-          border: "4px solid #FF9900",
+          border: `4px solid ${theme.accentColor}`,
           transform: `scale(${photoScale})`,
         }}
       >
@@ -78,7 +115,7 @@ const SpeakerCard: React.FC<{
       </div>
       <div
         style={{
-          color: "#ffffff",
+          color: theme.textColor,
           fontSize: nameSize,
           fontWeight: 700,
           textAlign: "center",
@@ -89,7 +126,7 @@ const SpeakerCard: React.FC<{
       </div>
       <div
         style={{
-          color: "#a0a0b0",
+          color: theme.mutedTextColor,
           fontSize: affiliationSize,
           textAlign: "center",
           opacity: affiliationOpacity,
@@ -105,7 +142,9 @@ const OneSpeakerLayout: React.FC<{
   speakerGroup: SpeakerGroup;
   frame: number;
   fps: number;
-}> = ({ speakerGroup, frame, fps }) => {
+  theme: ColorTheme;
+  effect?: SpeakerEffect;
+}> = ({ speakerGroup, frame, fps, theme, effect }) => {
   const titleOpacity = Math.min(1, Math.max(0, (frame - 30) / 15));
 
   return (
@@ -127,10 +166,13 @@ const OneSpeakerLayout: React.FC<{
         photoSize={280}
         nameSize={52}
         affiliationSize={32}
+        theme={theme}
+        effect={effect}
+        cardIndex={0}
       />
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 40,
           fontWeight: 700,
           textAlign: "center",
@@ -149,7 +191,9 @@ const TwoSpeakerLayout: React.FC<{
   speakerGroup: SpeakerGroup;
   frame: number;
   fps: number;
-}> = ({ speakerGroup, frame, fps }) => {
+  theme: ColorTheme;
+  effect?: SpeakerEffect;
+}> = ({ speakerGroup, frame, fps, theme, effect }) => {
   const titleOpacity = Math.min(1, Math.max(0, (frame - 35) / 15));
 
   return (
@@ -180,12 +224,15 @@ const TwoSpeakerLayout: React.FC<{
             photoSize={220}
             nameSize={44}
             affiliationSize={28}
+            theme={theme}
+            effect={effect}
+            cardIndex={i}
           />
         ))}
       </div>
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 38,
           fontWeight: 700,
           textAlign: "center",
@@ -204,7 +251,9 @@ const ThreeSpeakerLayout: React.FC<{
   speakerGroup: SpeakerGroup;
   frame: number;
   fps: number;
-}> = ({ speakerGroup, frame, fps }) => {
+  theme: ColorTheme;
+  effect?: SpeakerEffect;
+}> = ({ speakerGroup, frame, fps, theme, effect }) => {
   const titleOpacity = Math.min(1, Math.max(0, (frame - 40) / 15));
 
   return (
@@ -235,12 +284,15 @@ const ThreeSpeakerLayout: React.FC<{
             photoSize={180}
             nameSize={36}
             affiliationSize={24}
+            theme={theme}
+            effect={effect}
+            cardIndex={i}
           />
         ))}
       </div>
       <div
         style={{
-          color: "#FF9900",
+          color: theme.accentColor,
           fontSize: 36,
           fontWeight: 700,
           textAlign: "center",
@@ -258,15 +310,17 @@ const ThreeSpeakerLayout: React.FC<{
 export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
   speakerGroup,
   index,
+  theme,
+  effect = 'springCards',
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const speakerCount = speakerGroup.speakers.length;
 
   const backgrounds = [
-    "linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%)",
-    "linear-gradient(180deg, #16213e 0%, #1a1a2e 100%)",
-    "linear-gradient(180deg, #0f0f23 0%, #16213e 100%)",
+    `linear-gradient(180deg, ${theme.gradientFrom} 0%, ${theme.backgroundColor} 100%)`,
+    `linear-gradient(180deg, ${theme.gradientTo} 0%, ${theme.backgroundColor} 100%)`,
+    `linear-gradient(180deg, ${theme.gradientFrom} 0%, ${theme.gradientTo} 100%)`,
   ];
 
   return (
@@ -281,6 +335,8 @@ export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
           speakerGroup={speakerGroup}
           frame={frame}
           fps={fps}
+          theme={theme}
+          effect={effect}
         />
       )}
       {speakerCount === 2 && (
@@ -288,6 +344,8 @@ export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
           speakerGroup={speakerGroup}
           frame={frame}
           fps={fps}
+          theme={theme}
+          effect={effect}
         />
       )}
       {speakerCount >= 3 && (
@@ -295,6 +353,8 @@ export const SpeakerScene: React.FC<SpeakerSceneProps> = ({
           speakerGroup={speakerGroup}
           frame={frame}
           fps={fps}
+          theme={theme}
+          effect={effect}
         />
       )}
     </AbsoluteFill>

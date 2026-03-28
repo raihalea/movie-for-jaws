@@ -1,0 +1,57 @@
+{
+  "eventTitle": "JAWS-UG Fukuoka Cloud Deep Dive",
+  "chapterName": "JAWS-UG 福岡",
+  "speakers": [
+    {
+      "talkTitle": "AWS Step Functions ワークフロー設計パターン",
+      "speakers": [
+        {
+          "name": "吉田 健一",
+          "affiliation": "株式会社サンセットラボ",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    },
+    {
+      "talkTitle": "Amazon Aurora のパフォーマンスチューニング",
+      "speakers": [
+        {
+          "name": "小林 美優",
+          "affiliation": "データベース株式会社",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "山本 拓也",
+          "affiliation": "株式会社テックブリッジ",
+          "photoUrl": "speaker-placeholder.svg"
+        },
+        {
+          "name": "伊藤 さくら",
+          "affiliation": "フリーランスエンジニア",
+          "photoUrl": "speaker-placeholder.svg"
+        }
+      ]
+    }
+  ],
+  "hashtag": "#jawsug_fukuoka",
+  "musicLicense": {
+    "title": "Golden Hour",
+    "artist": "Sunset Waves",
+    "licenseType": "CC BY 4.0",
+    "url": "https://example.com/golden-hour"
+  },
+  "musicDurationInSeconds": 65,
+  "theme": {
+    "backgroundColor": "#1a0f0a",
+    "accentColor": "#ff6b35",
+    "textColor": "#fff5ee",
+    "mutedTextColor": "#c0a090",
+    "gradientFrom": "#1a0500",
+    "gradientTo": "#2a1510"
+  },
+  "introEffect": "typewriter",
+  "titleEffect": "wipeIn",
+  "speakerEffect": "fadeStagger",
+  "hashtagEffect": "rotateIn",
+  "licenseEffect": "typewriter"
+}
