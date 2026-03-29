@@ -5,6 +5,8 @@ import {
   staticFile,
   useCurrentFrame,
   interpolate,
+  spring,
+  useVideoConfig,
 } from "remotion";
 import { ScaleIn, FadeIn } from "./common/animations";
 import { loadFont } from "@remotion/google-fonts/NotoSansJP";
@@ -95,6 +97,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
   effect = "scaleIn",
 }) => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
 
   const jawsugSrc = jawsugIconUrl
     ? jawsugIconUrl.startsWith("http")
@@ -202,6 +205,78 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     );
   };
 
+  const renderElasticDrop = () => {
+    const clampConfig = {
+      extrapolateLeft: "clamp" as const,
+      extrapolateRight: "clamp" as const,
+    };
+    const jawsProgress = spring({
+      fps,
+      frame,
+      config: { damping: 8, stiffness: 150, mass: 0.5 },
+    });
+    const jawsTranslateY = interpolate(jawsProgress, [0, 1], [-200, 0]);
+    const jawsOpacity = interpolate(frame, [0, 10], [0, 1], clampConfig);
+
+    const chapterProgress = spring({
+      fps,
+      frame: Math.max(0, frame - 15),
+      config: { damping: 8, stiffness: 150, mass: 0.5 },
+    });
+    const chapterTranslateY = interpolate(chapterProgress, [0, 1], [-200, 0]);
+    const chapterOpacity = interpolate(frame, [15, 25], [0, 1], clampConfig);
+
+    const dateProgress = spring({
+      fps,
+      frame: Math.max(0, frame - 25),
+      config: { damping: 8, stiffness: 150, mass: 0.5 },
+    });
+    const dateTranslateY = interpolate(dateProgress, [0, 1], [-200, 0]);
+    const dateOpacity = interpolate(frame, [25, 35], [0, 1], clampConfig);
+
+    return (
+      <>
+        <div
+          style={{
+            transform: `translateY(${jawsTranslateY}px)`,
+            opacity: jawsOpacity,
+          }}
+        >
+          {renderJawsugIcon()}
+        </div>
+        <div
+          style={{
+            transform: `translateY(${chapterTranslateY}px)`,
+            opacity: chapterOpacity,
+            marginTop: 30,
+          }}
+        >
+          {chapterSrc ? (
+            <Img
+              src={chapterSrc}
+              style={{ width: 220, height: 220, objectFit: "contain" }}
+            />
+          ) : (
+            <ChapterIcon size={220} />
+          )}
+        </div>
+        {eventDate && (
+          <div
+            style={{
+              transform: `translateY(${dateTranslateY}px)`,
+              opacity: dateOpacity,
+              marginTop: 16,
+            }}
+          >
+            <div style={{ color: theme.mutedTextColor, fontSize: 44, textAlign: "center" }}>
+              {eventDate}
+            </div>
+          </div>
+        )}
+      </>
+    );
+  };
+
   const renderTypewriter = () => {
     return (
       <>
@@ -232,6 +307,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       {effect === "scaleIn" && renderScaleIn()}
       {effect === "fadeSlide" && renderFadeSlide()}
       {effect === "typewriter" && renderTypewriter()}
+      {effect === "elasticDrop" && renderElasticDrop()}
     </AbsoluteFill>
   );
 };
