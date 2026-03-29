@@ -1,0 +1,25 @@
+{
+  "project_type": "Remotion video generation app (React/TypeScript) for JAWS-UG events",
+  "language": "TypeScript/React",
+  "build_system": "npm with Remotion CLI; scripts: dev (remotion studio), build (remotion render JawsUgLT), render (remotion render)",
+  "test_framework": "No test framework configured. No test files exist.",
+  "build_command": "cd /projects/sandbox/movie-for-jaws && npx tsc --noEmit",
+  "test_command": "No tests exist. Verify with TypeScript type checking: npx tsc --noEmit",
+  "verification_instructions": "1. Run npm install to install dependencies. 2. Run npx tsc --noEmit to verify TypeScript compiles without errors. 3. Check that sample-props.json uses the new effect names and is valid JSON.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "cd /projects/sandbox/movie-for-jaws && npm install",
+  "environment_constraints": "OPEN_INTERNET network mode. Node.js v22 available via nvm. No Dockerfile in project.",
+  "contribution_requirements": "No CONTRIBUTING.md found. Follow existing code patterns.",
+  "key_patterns": "Effect system pattern: (1) Union type in src/types.ts defines valid effect names per scene. (2) Each scene component (IntroScene, TitleScene, SpeakerScene, HashtagScene, LicenseScene) has a render function per effect (e.g. renderSpringBounce). (3) The component's return uses conditional rendering: {effect === 'name' && renderName()}. (4) Animations use Remotion's spring(), interpolate(), useCurrentFrame(), useVideoConfig(). (5) Reusable animation wrappers (FadeIn, SlideUp, ScaleIn) live in src/components/common/animations.tsx. (6) SpeakerScene is more complex: SpeakerCard component handles per-card animation logic with effect-specific branches.",
+  "relevant_files": [
+    "/projects/sandbox/movie-for-jaws/src/types.ts",
+    "/projects/sandbox/movie-for-jaws/src/components/common/animations.tsx",
+    "/projects/sandbox/movie-for-jaws/src/components/IntroScene.tsx",
+    "/projects/sandbox/movie-for-jaws/src/components/TitleScene.tsx",
+    "/projects/sandbox/movie-for-jaws/src/components/SpeakerScene.tsx",
+    "/projects/sandbox/movie-for-jaws/src/components/HashtagScene.tsx",
+    "/projects/sandbox/movie-for-jaws/src/components/LicenseScene.tsx",
+    "/projects/sandbox/movie-for-jaws/sample-props.json"
+  ],
+  "directory_structure": "src/ - main source code; src/components/ - scene components (IntroScene, TitleScene, SpeakerScene, HashtagScene, LicenseScene); src/components/common/ - reusable animation wrappers; src/compositions/ - JawsUgLT main composition; src/utils/ - timing and theme utilities; src/types.ts - TypeScript type definitions; sample-props.json - sample config at project root"
+}

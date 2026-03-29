@@ -1,0 +1,7 @@
+{
+  "task_id": "task-add-dynamic-effects",
+  "task_description": "Add new dynamic animation effects to all 5 scene types in the Remotion video generator while preserving all existing effects. Update sample-props.json to use the new effects for immediate testing.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
