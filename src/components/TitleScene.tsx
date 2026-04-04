@@ -6,10 +6,8 @@ import {
   useVideoConfig,
   interpolate,
 } from "remotion";
-import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import { fontFamily } from "../utils/font";
 import type { ColorTheme, TitleEffect } from "../types";
-
-const { fontFamily } = loadFont();
 
 interface TitleSceneProps {
   eventTitle: string;
