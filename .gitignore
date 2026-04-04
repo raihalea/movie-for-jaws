@@ -5,3 +5,5 @@ dist/
 *.webm
 input-props.json
 .dockerignore
+.DS_Store
+.env

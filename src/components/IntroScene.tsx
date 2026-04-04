@@ -87,7 +87,6 @@ interface IntroSceneProps {
 export const IntroScene: React.FC<IntroSceneProps> = ({
   jawsugIconUrl,
   chapterIconUrl,
-  chapterName,
   eventDate,
   theme,
   effect = "scaleIn",
