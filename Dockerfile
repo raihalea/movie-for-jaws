@@ -20,12 +20,8 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
+COPY package.json package-lock.json tsconfig.json ./
 RUN npm ci
-
-COPY tsconfig.json ./
-COPY src ./src
-COPY public ./public
 
 RUN npx remotion browser ensure
 

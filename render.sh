@@ -20,6 +20,9 @@ fi
 mkdir -p "$(dirname "$OUTPUT_FILE")"
 
 docker run --rm \
+  --user "$(id -u):$(id -g)" \
+  -v "$(pwd)/src:/app/src:ro" \
+  -v "$(pwd)/public:/app/public:ro" \
   -v "$(pwd)/$PROPS_FILE:/app/props.json:ro" \
   -v "$(pwd)/$(dirname "$OUTPUT_FILE"):/app/out" \
   "$IMAGE_NAME" \
