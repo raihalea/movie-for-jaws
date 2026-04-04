@@ -79,10 +79,10 @@
     "gradientFrom": "#a8c4e0",
     "gradientTo": "#d8e6f5"
   },
-  "introEffect": "scaleIn",
-  "titleEffect": "springScale",
-  "speakerEffect": "springCards",
-  "hashtagEffect": "springBounce",
-  "licenseEffect": "fadeIn",
+  "introEffect": "elasticDrop",
+  "titleEffect": "flipReveal",
+  "speakerEffect": "spiralIn",
+  "hashtagEffect": "shakeReveal",
+  "licenseEffect": "zoomSpin",
   "musicUrl": "bgm.mp3"
 }

@@ -1,0 +1,35 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Add one new dynamic effect per scene type (5 total) with more motion/animation, update TypeScript types, and set them in sample-props.json. All existing effects must remain unchanged.",
+  "status": "completed",
+  "steps": [
+    "Step 1 - Update type definitions in src/types.ts: Add one new effect name to each scene's union type. Proposed new effects: IntroEffect adds 'elasticDrop' (icons drop in with elastic bounce), TitleEffect adds 'flipReveal' (3D flip rotation revealing the title), SpeakerEffect adds 'spiralIn' (cards spiral in from offscreen with rotation+scale), HashtagEffect adds 'shakeReveal' (text shakes/vibrates as it reveals), LicenseEffect adds 'zoomSpin' (content zooms in while spinning).",
+
+    "Step 2 - Add reusable animation component to src/components/common/animations.tsx: Add an ElasticScale component that uses spring() with high stiffness/low damping for a pronounced bounce effect. This can be reused across multiple new effects.",
+
+    "Step 3 - Add 'elasticDrop' effect to src/components/IntroScene.tsx: Create renderElasticDrop() function. Icons should drop from above (translateY from -200 to 0) with a spring-based overshoot bounce (high stiffness, low damping), staggered for each element (JAWS icon first, then chapter icon with delay). Add the conditional rendering line: {effect === 'elasticDrop' && renderElasticDrop()}. Follow the same structure as renderScaleIn() and renderFadeSlide().",
+
+    "Step 4 - Add 'flipReveal' effect to src/components/TitleScene.tsx: Create renderFlipReveal() function. The title text and accent bars should rotate in 3D from rotateX(90deg) to rotateX(0deg) using interpolate over ~30 frames with perspective. The top bar flips first, then the title, then the bottom bar with staggered delays. Add the conditional rendering line. Follow the pattern of renderGlitch() and renderWipeIn().",
+
+    "Step 5 - Add 'spiralIn' effect to src/components/SpeakerScene.tsx: In the SpeakerCard component, add a new branch for effect === 'spiralIn'. Each card should animate from offscreen (translateX offset of ~300-500px based on cardIndex direction), with simultaneous rotation (from ~180deg to 0) and scale (from 0.2 to 1), all via interpolate() with staggered delays per card. The wrapper style should combine translateX, rotate, and scale transforms when effect === 'spiralIn'.",
+
+    "Step 6 - Add 'shakeReveal' effect to src/components/HashtagScene.tsx: Create renderShakeReveal() function. Elements fade in sequentially (icon, hashtag, subtitle) while the hashtag text has a shaking/vibrating animation using sin(frame * frequency) for translateX offset that decays over time (multiply by a decay factor from interpolate). This creates a dynamic 'rumble reveal' effect. Add the conditional rendering line.",
+
+    "Step 7 - Add 'zoomSpin' effect to src/components/LicenseScene.tsx: Add a new branch in renderContent() for effect === 'zoomSpin'. The entire content block should scale from 0 to 1 and rotate from -180deg to 0deg simultaneously over ~30 frames using interpolate(). Opacity should also go from 0 to 1. Wrap the content in a div with these combined transforms.",
+
+    "Step 8 - Update sample-props.json: Change the effect values to use the new effects so the user can try them immediately. Set introEffect to 'elasticDrop', titleEffect to 'flipReveal', speakerEffect to 'spiralIn', hashtagEffect to 'shakeReveal', licenseEffect to 'zoomSpin'."
+  ],
+  "acceptance_criteria": [
+    "src/types.ts contains the 5 new effect names in their respective union types alongside all existing names",
+    "Each scene component has a new render function for its new effect and the conditional rendering line",
+    "All existing effects remain completely untouched in all files",
+    "sample-props.json uses the 5 new effect names",
+    "npx tsc --noEmit passes with no errors after all changes"
+  ],
+  "verification": [
+    "cd /projects/sandbox/movie-for-jaws && npx tsc --noEmit"
+  ],
+  "blocked_reason": null,
+  "findings": "All 5 new effects implemented successfully. npx tsc --noEmit passes cleanly. No existing effects were modified. ElasticScale component added to animations.tsx but not directly used by scene components (they use spring/interpolate directly for more control). The LicenseScene needed interpolate imported from remotion (was not previously imported). IntroScene needed spring and useVideoConfig imported."
+}

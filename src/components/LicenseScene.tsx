@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame } from "remotion";
+import { AbsoluteFill, useCurrentFrame, interpolate } from "remotion";
 import { FadeIn, SlideUp } from "./common/animations";
 import { fontFamily } from "../utils/font";
 import type { MusicLicense, ColorTheme, LicenseEffect } from "../types";
@@ -24,6 +24,85 @@ export const LicenseScene: React.FC<LicenseSceneProps> = ({
   const artistChars = Math.min(artistText.length, Math.max(0, Math.floor((frame - 40) / 2)));
 
   const renderContent = () => {
+    if (effect === 'zoomSpin') {
+      const clampConfig = {
+        extrapolateLeft: "clamp" as const,
+        extrapolateRight: "clamp" as const,
+      };
+      const scale = interpolate(frame, [0, 30], [0, 1], clampConfig);
+      const rotation = interpolate(frame, [0, 30], [-180, 0], clampConfig);
+      const zoomSpinOpacity = interpolate(frame, [0, 20], [0, 1], clampConfig);
+
+      return (
+        <div
+          style={{
+            transform: `scale(${scale}) rotate(${rotation}deg)`,
+            opacity: zoomSpinOpacity,
+          }}
+        >
+          <div style={{ textAlign: "center" }}>
+            <div
+              style={{
+                fontSize: 110,
+                marginBottom: 40,
+              }}
+            >
+              ♪
+            </div>
+            <div
+              style={{
+                color: theme.mutedTextColor,
+                fontSize: 48,
+                marginBottom: 16,
+              }}
+            >
+              Music
+            </div>
+            <div
+              style={{
+                color: theme.textColor,
+                fontSize: 64,
+                fontWeight: 700,
+                marginBottom: 12,
+              }}
+            >
+              {musicLicense.title}
+            </div>
+            <div
+              style={{
+                color: theme.mutedTextColor,
+                fontSize: 50,
+                marginBottom: 20,
+              }}
+            >
+              {artistText}
+            </div>
+            {musicLicense.licenseType && (
+              <div
+                style={{
+                  color: theme.mutedTextColor,
+                  fontSize: 40,
+                  marginBottom: 8,
+                }}
+              >
+                {musicLicense.licenseType}
+              </div>
+            )}
+            {musicLicense.url && (
+              <div
+                style={{
+                  color: theme.mutedTextColor,
+                  fontSize: 38,
+                }}
+              >
+                {musicLicense.url}
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+
     if (effect === 'typewriter') {
       return (
         <div style={{ textAlign: "center" }}>

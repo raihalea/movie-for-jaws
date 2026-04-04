@@ -74,6 +74,21 @@ const SpeakerCard: React.FC<{
     ? interpolate(frame, [staggerDelay, staggerDelay + 20], [30, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
     : 0;
 
+  // spiralIn: cards spiral in from offscreen with rotation and scale
+  const spiralStaggerDelay = delay + cardIndex * 10;
+  const spiralTranslateX = effect === 'spiralIn'
+    ? interpolate(frame, [spiralStaggerDelay, spiralStaggerDelay + 25], [cardIndex % 2 === 0 ? -400 : 400, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 0;
+  const spiralRotate = effect === 'spiralIn'
+    ? interpolate(frame, [spiralStaggerDelay, spiralStaggerDelay + 25], [cardIndex % 2 === 0 ? -180 : 180, 0], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 0;
+  const spiralScale = effect === 'spiralIn'
+    ? interpolate(frame, [spiralStaggerDelay, spiralStaggerDelay + 25], [0.2, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 1;
+  const spiralOpacity = effect === 'spiralIn'
+    ? interpolate(frame, [spiralStaggerDelay, spiralStaggerDelay + 15], [0, 1], { extrapolateLeft: 'clamp', extrapolateRight: 'clamp' })
+    : 1;
+
   // Compute wrapper styles based on effect
   const wrapperStyle: React.CSSProperties = {
     display: "flex",
@@ -88,6 +103,9 @@ const SpeakerCard: React.FC<{
   } else if (effect === 'fadeStagger') {
     wrapperStyle.transform = `translateY(${fadeTranslateY}px)`;
     wrapperStyle.opacity = fadeOpacity;
+  } else if (effect === 'spiralIn') {
+    wrapperStyle.transform = `translateX(${spiralTranslateX}px) rotate(${spiralRotate}deg) scale(${spiralScale})`;
+    wrapperStyle.opacity = spiralOpacity;
   }
 
   return (

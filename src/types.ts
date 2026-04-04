@@ -27,11 +27,11 @@ export type ColorTheme = {
 
 export type SceneThemeOverride = Partial<ColorTheme>;
 
-export type IntroEffect = 'scaleIn' | 'fadeSlide' | 'typewriter';
-export type TitleEffect = 'springScale' | 'glitch' | 'wipeIn';
-export type SpeakerEffect = 'springCards' | 'slideFromSides' | 'fadeStagger';
-export type HashtagEffect = 'springBounce' | 'rotateIn' | 'pulseGlow';
-export type LicenseEffect = 'fadeIn' | 'slideUp' | 'typewriter';
+export type IntroEffect = 'scaleIn' | 'fadeSlide' | 'typewriter' | 'elasticDrop';
+export type TitleEffect = 'springScale' | 'glitch' | 'wipeIn' | 'flipReveal';
+export type SpeakerEffect = 'springCards' | 'slideFromSides' | 'fadeStagger' | 'spiralIn';
+export type HashtagEffect = 'springBounce' | 'rotateIn' | 'pulseGlow' | 'shakeReveal';
+export type LicenseEffect = 'fadeIn' | 'slideUp' | 'typewriter' | 'zoomSpin';
 
 export type JawsUgLTProps = {
   eventTitle: string;
