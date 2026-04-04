@@ -69,27 +69,3 @@ export const ScaleIn: React.FC<{
     </div>
   );
 };
-
-export const ElasticScale: React.FC<{
-  delay?: number;
-  children: React.ReactNode;
-}> = ({ delay = 0, children }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const scale = spring({
-    fps,
-    frame: Math.max(0, frame - delay),
-    config: { damping: 8, stiffness: 200, mass: 0.4 },
-  });
-
-  return (
-    <div
-      style={{
-        transform: `scale(${scale})`,
-        transformOrigin: "center center",
-      }}
-    >
-      {children}
-    </div>
-  );
-};

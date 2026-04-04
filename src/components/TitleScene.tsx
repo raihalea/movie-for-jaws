@@ -155,61 +155,6 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
     );
   };
 
-  const renderFlipReveal = () => {
-    const topBarRotateX = interpolate(frame, [0, 25], [90, 0], clampConfig);
-    const topBarOpacity = interpolate(frame, [0, 25], [0, 1], clampConfig);
-    const titleRotateX = interpolate(frame, [5, 30], [90, 0], clampConfig);
-    const titleOpacity = interpolate(frame, [5, 30], [0, 1], clampConfig);
-    const bottomBarRotateX = interpolate(frame, [10, 35], [90, 0], clampConfig);
-    const bottomBarOpacity = interpolate(frame, [10, 35], [0, 1], clampConfig);
-
-    return (
-      <>
-        <div style={{ perspective: 800 }}>
-          <div
-            style={{
-              width: 1100,
-              height: 10,
-              backgroundColor: theme.accentColor,
-              marginBottom: 40,
-              transform: `rotateX(${topBarRotateX}deg)`,
-              opacity: topBarOpacity,
-            }}
-          />
-        </div>
-        <div style={{ perspective: 800 }}>
-          <div
-            style={{
-              color: theme.textColor,
-              fontSize: 120,
-              fontWeight: 900,
-              textAlign: "center",
-              maxWidth: 1600,
-              lineHeight: 1.3,
-              padding: "0 60px",
-              transform: `rotateX(${titleRotateX}deg)`,
-              opacity: titleOpacity,
-            }}
-          >
-            {eventTitle}
-          </div>
-        </div>
-        <div style={{ perspective: 800 }}>
-          <div
-            style={{
-              width: 1100,
-              height: 10,
-              backgroundColor: theme.accentColor,
-              marginTop: 40,
-              transform: `rotateX(${bottomBarRotateX}deg)`,
-              opacity: bottomBarOpacity,
-            }}
-          />
-        </div>
-      </>
-    );
-  };
-
   const renderWipeIn = () => {
     const progress = interpolate(frame, [0, 30], [0, 100], clampConfig);
 
@@ -268,7 +213,6 @@ export const TitleScene: React.FC<TitleSceneProps> = ({
       {effect === "springScale" && renderSpringScale()}
       {effect === "glitch" && renderGlitch()}
       {effect === "wipeIn" && renderWipeIn()}
-      {effect === "flipReveal" && renderFlipReveal()}
     </AbsoluteFill>
   );
 };

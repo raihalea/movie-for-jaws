@@ -126,51 +126,6 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
     );
   };
 
-  const renderShakeReveal = () => {
-    const iconOpacity = interpolate(frame, [0, 15], [0, 1], clampConfig);
-    const hashtagOpacity = interpolate(frame, [8, 23], [0, 1], clampConfig);
-    const subtitleOpacity = interpolate(frame, [20, 40], [0, 1], clampConfig);
-    const shakeAmount = interpolate(frame, [8, 50], [15, 0], clampConfig);
-    const shakeX = Math.sin(frame * 1.5) * shakeAmount;
-
-    return (
-      <>
-        <div
-          style={{
-            fontSize: 200,
-            marginBottom: 40,
-            opacity: iconOpacity,
-          }}
-        >
-          𝕏
-        </div>
-        <div
-          style={{
-            color: theme.accentColor,
-            fontSize: 140,
-            fontWeight: 900,
-            textAlign: "center",
-            opacity: hashtagOpacity,
-            transform: `translateX(${shakeX}px)`,
-          }}
-        >
-          {hashtag}
-        </div>
-        <div
-          style={{
-            color: theme.mutedTextColor,
-            fontSize: 64,
-            marginTop: 40,
-            textAlign: "center",
-            opacity: subtitleOpacity,
-          }}
-        >
-          イベントの様子をポストしよう!
-        </div>
-      </>
-    );
-  };
-
   const renderPulseGlow = () => {
     const iconOpacity = interpolate(frame, [0, 20], [0, 1], clampConfig);
     const hashtagOpacity = interpolate(frame, [10, 30], [0, 1], clampConfig);
@@ -228,7 +183,6 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
       {effect === "springBounce" && renderSpringBounce()}
       {effect === "rotateIn" && renderRotateIn()}
       {effect === "pulseGlow" && renderPulseGlow()}
-      {effect === "shakeReveal" && renderShakeReveal()}
     </AbsoluteFill>
   );
 };
