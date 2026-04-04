@@ -7,10 +7,8 @@ import {
   interpolate,
 } from "remotion";
 import { ScaleIn, FadeIn } from "./common/animations";
-import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import { fontFamily } from "../utils/font";
 import type { ColorTheme, IntroEffect } from "../types";
-
-const { fontFamily } = loadFont();
 
 const JawsUgIcon: React.FC<{ size: number; accentColor: string }> = ({
   size,

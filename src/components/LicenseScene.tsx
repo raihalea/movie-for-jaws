@@ -1,10 +1,8 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame } from "remotion";
 import { FadeIn, SlideUp } from "./common/animations";
-import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import { fontFamily } from "../utils/font";
 import type { MusicLicense, ColorTheme, LicenseEffect } from "../types";
-
-const { fontFamily } = loadFont();
 
 interface LicenseSceneProps {
   musicLicense: MusicLicense;

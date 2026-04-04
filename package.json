@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion render JawsUgLT",
-    "render": "remotion render"
+    "render": "./render.sh"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.441",

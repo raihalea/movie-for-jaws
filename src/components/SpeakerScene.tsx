@@ -8,10 +8,8 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import { loadFont } from "@remotion/google-fonts/NotoSansJP";
+import { fontFamily } from "../utils/font";
 import type { SpeakerGroup, Speaker, ColorTheme, SpeakerEffect } from "../types";
-
-const { fontFamily } = loadFont();
 
 interface SpeakerSceneProps {
   speakerGroup: SpeakerGroup;
