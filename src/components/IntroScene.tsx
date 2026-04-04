@@ -1,13 +1,12 @@
 import React from "react";
 import {
-  AbsoluteFill,
   Img,
+  interpolate,
   staticFile,
   useCurrentFrame,
-  interpolate,
 } from "remotion";
-import { ScaleIn, FadeIn } from "./common/animations";
-import { fontFamily } from "../utils/font";
+import { PopIn, BlurIn, FadeIn } from "./common/animations";
+import { SceneWrapper } from "./common/SceneWrapper";
 import type { ColorTheme, IntroEffect } from "../types";
 
 const JawsUgIcon: React.FC<{ size: number; accentColor: string }> = ({
@@ -132,15 +131,34 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
       </div>
     );
 
+  // Radial glow behind the icon - pulses gently
+  const glowScale = 1 + 0.05 * Math.sin(frame * 0.08);
+  const renderGlow = () => (
+    <div
+      style={{
+        position: "absolute",
+        width: 600,
+        height: 600,
+        borderRadius: "50%",
+        background: `radial-gradient(circle, ${theme.accentColor}18 0%, ${theme.accentColor}08 40%, transparent 70%)`,
+        transform: `scale(${glowScale})`,
+        pointerEvents: "none",
+      }}
+    />
+  );
+
   const renderScaleIn = () => (
     <>
-      <ScaleIn>{renderJawsugIcon()}</ScaleIn>
-      <FadeIn delay={20} durationInFrames={20}>
+      <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        {renderGlow()}
+        <PopIn>{renderJawsugIcon()}</PopIn>
+      </div>
+      <BlurIn delay={20} durationInFrames={20}>
         {renderChapterIcon()}
-      </FadeIn>
+      </BlurIn>
       {eventDate && (
         <FadeIn delay={35} durationInFrames={20}>
-          <div style={{ color: theme.mutedTextColor, fontSize: 44, marginTop: 16, textAlign: "center" }}>
+          <div style={{ color: theme.mutedTextColor, fontSize: 38, marginTop: 16, textAlign: "center" }}>
             {eventDate}
           </div>
         </FadeIn>
@@ -155,22 +173,20 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
     };
     const jawsTranslateX = interpolate(frame, [0, 20], [-100, 0], clampConfig);
     const jawsOpacity = interpolate(frame, [0, 20], [0, 1], clampConfig);
-    const chapterTranslateX = interpolate(
-      frame,
-      [15, 35],
-      [-100, 0],
-      clampConfig,
-    );
+    const chapterTranslateX = interpolate(frame, [15, 35], [-100, 0], clampConfig);
     const chapterOpacity = interpolate(frame, [15, 35], [0, 1], clampConfig);
     return (
       <>
-        <div
-          style={{
-            transform: `translateX(${jawsTranslateX}px)`,
-            opacity: jawsOpacity,
-          }}
-        >
-          {renderJawsugIcon()}
+        <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          {renderGlow()}
+          <div
+            style={{
+              transform: `translateX(${jawsTranslateX}px)`,
+              opacity: jawsOpacity,
+            }}
+          >
+            {renderJawsugIcon()}
+          </div>
         </div>
         <div
           style={{
@@ -190,7 +206,7 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
         </div>
         {eventDate && (
           <div style={{ transform: `translateX(${chapterTranslateX}px)`, opacity: chapterOpacity, marginTop: 16 }}>
-            <div style={{ color: theme.mutedTextColor, fontSize: 44, textAlign: "center" }}>
+            <div style={{ color: theme.mutedTextColor, fontSize: 38, textAlign: "center" }}>
               {eventDate}
             </div>
           </div>
@@ -202,33 +218,33 @@ export const IntroScene: React.FC<IntroSceneProps> = ({
   const renderTypewriter = () => {
     return (
       <>
-        <ScaleIn>{renderJawsugIcon()}</ScaleIn>
-        <ScaleIn delay={15}>
+        <div style={{ position: "relative", display: "flex", justifyContent: "center", alignItems: "center" }}>
+          {renderGlow()}
+          <PopIn>{renderJawsugIcon()}</PopIn>
+        </div>
+        <BlurIn delay={15} durationInFrames={20}>
           {renderChapterIcon()}
-        </ScaleIn>
+        </BlurIn>
         {eventDate && (
-          <ScaleIn delay={15}>
-            <div style={{ color: theme.mutedTextColor, fontSize: 44, marginTop: 16, textAlign: "center" }}>
+          <BlurIn delay={30} durationInFrames={20}>
+            <div style={{ color: theme.mutedTextColor, fontSize: 38, marginTop: 16, textAlign: "center" }}>
               {eventDate}
             </div>
-          </ScaleIn>
+          </BlurIn>
         )}
       </>
     );
   };
 
   return (
-    <AbsoluteFill
-      style={{
-        backgroundColor: theme.backgroundColor,
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily,
-      }}
+    <SceneWrapper
+      theme={theme}
+      background={theme.backgroundColor}
+      backgroundIntensity={0.5}
     >
       {effect === "scaleIn" && renderScaleIn()}
       {effect === "fadeSlide" && renderFadeSlide()}
       {effect === "typewriter" && renderTypewriter()}
-    </AbsoluteFill>
+    </SceneWrapper>
   );
 };

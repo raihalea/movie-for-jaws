@@ -15,10 +15,12 @@
     },
     {
       "talkTitle": "Amazon S3 コスト最適化の実践",
+      "subTalkTitle": "〜長いタイトルのテスト月額100万円削減した具体的なテクニック〜",
       "speakers": [
         {
           "name": "鈴木 花子",
           "affiliation": "配信スタート株式会社",
+          "subAffiliation": "長い所属名のテスト部門",
           "photoUrl": "speaker-placeholder.svg"
         },
         {
@@ -29,7 +31,7 @@
       ]
     },
     {
-      "talkTitle": "AgentCoretとは? 最新の動向を紹介",
+      "talkTitle": "AgentCoreとは? 最新の動向を紹介",
       "speakers": [
         {
           "name": "Abc edf",
@@ -64,7 +66,7 @@
       ]
     }
   ],
-  "hashtag": "#jawsug_tokyo",
+  "hashtag": "#jawsug_haishinbu",
   "musicLicense": {
     "title": "Sunny Days",
     "artist": "Sample Artist",
@@ -72,12 +74,12 @@
     "url": "https://example.com/license"
   },
   "theme": {
-    "backgroundColor": "#c8daf0",
+    "backgroundColor": "#0a1628",
     "accentColor": "#FF9900",
-    "textColor": "#1a2030",
-    "mutedTextColor": "#5a6880",
-    "gradientFrom": "#a8c4e0",
-    "gradientTo": "#d8e6f5"
+    "textColor": "#e8edf5",
+    "mutedTextColor": "#8a9ab5",
+    "gradientFrom": "#0d1f3c",
+    "gradientTo": "#152a4a"
   },
   "introEffect": "scaleIn",
   "titleEffect": "springScale",

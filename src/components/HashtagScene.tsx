@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  AbsoluteFill,
   spring,
   useCurrentFrame,
   useVideoConfig,
   interpolate,
 } from "remotion";
-import { fontFamily } from "../utils/font";
+import { AutoSizeText } from "./common/AutoSizeText";
+import { SceneWrapper } from "./common/SceneWrapper";
 import type { ColorTheme, HashtagEffect } from "../types";
 
 interface HashtagSceneProps {
@@ -28,11 +28,17 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
     extrapolateRight: "clamp" as const,
   };
 
+  // Gentle wobble for the X icon
+  const iconWobble = 3 * Math.sin(frame * 0.06);
+
+  // Bouncing arrow for call-to-action
+  const arrowBounce = 5 * Math.sin(frame * 0.12);
+
   const renderSpringBounce = () => {
     const iconScale = spring({
       fps,
       frame,
-      config: { damping: 12, stiffness: 100, mass: 0.5 },
+      config: { damping: 8, stiffness: 200, mass: 0.5 },
     });
     const hashtagScale = spring({
       fps,
@@ -45,34 +51,43 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
       <>
         <div
           style={{
-            fontSize: 200,
-            transform: `scale(${iconScale})`,
+            fontSize: 170,
+            transform: `scale(${iconScale}) rotate(${iconWobble}deg)`,
             marginBottom: 40,
           }}
         >
           𝕏
         </div>
-        <div
-          style={{
-            color: theme.accentColor,
-            fontSize: 140,
-            fontWeight: 900,
-            transform: `scale(${hashtagScale})`,
-            textAlign: "center",
-          }}
-        >
-          {hashtag}
+        <div style={{ transform: `scale(${hashtagScale})` }}>
+          <AutoSizeText
+            text={hashtag}
+            maxFontSize={120}
+            minFontSize={60}
+            maxWidth={1700}
+            fontWeight={900}
+            style={{ color: theme.accentColor }}
+          />
         </div>
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 64,
+            fontSize: 54,
             marginTop: 40,
             opacity: subtitleOpacity,
             textAlign: "center",
           }}
         >
           イベントの様子をポストしよう!
+        </div>
+        <div
+          style={{
+            fontSize: 40,
+            marginTop: 16,
+            opacity: subtitleOpacity * 0.6,
+            transform: `translateY(${arrowBounce}px)`,
+          }}
+        >
+          ↓
         </div>
       </>
     );
@@ -90,9 +105,9 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
       <>
         <div
           style={{
-            fontSize: 200,
+            fontSize: 170,
             marginBottom: 40,
-            transform: `rotateY(${iconRotate}deg)`,
+            transform: `rotateY(${iconRotate}deg) rotate(${iconWobble}deg)`,
             opacity: iconOpacity,
           }}
         >
@@ -100,20 +115,23 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         </div>
         <div
           style={{
-            color: theme.accentColor,
-            fontSize: 140,
-            fontWeight: 900,
-            textAlign: "center",
             transform: `rotateY(${hashtagRotate}deg)`,
             opacity: hashtagOpacity,
           }}
         >
-          {hashtag}
+          <AutoSizeText
+            text={hashtag}
+            maxFontSize={120}
+            minFontSize={60}
+            maxWidth={1700}
+            fontWeight={900}
+            style={{ color: theme.accentColor }}
+          />
         </div>
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 64,
+            fontSize: 54,
             marginTop: 40,
             textAlign: "center",
             transform: `rotateY(${subtitleRotate}deg)`,
@@ -121,6 +139,16 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
           }}
         >
           イベントの様子をポストしよう!
+        </div>
+        <div
+          style={{
+            fontSize: 40,
+            marginTop: 16,
+            opacity: subtitleOpacity * 0.6,
+            transform: `translateY(${arrowBounce}px)`,
+          }}
+        >
+          ↓
         </div>
       </>
     );
@@ -132,34 +160,40 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
     const subtitleOpacity = interpolate(frame, [25, 45], [0, 1], clampConfig);
     const glowIntensity = Math.sin(frame * 0.1) * 0.5 + 0.5;
     const glowRadius = 10 + glowIntensity * 20;
+    const pulseScale = 1 + 0.02 * Math.sin(frame * 0.1);
 
     return (
       <>
         <div
           style={{
-            fontSize: 200,
+            fontSize: 170,
             marginBottom: 40,
             opacity: iconOpacity,
+            transform: `rotate(${iconWobble}deg)`,
           }}
         >
           𝕏
         </div>
         <div
           style={{
-            color: theme.accentColor,
-            fontSize: 140,
-            fontWeight: 900,
-            textAlign: "center",
             opacity: hashtagOpacity,
             textShadow: `0 0 ${glowRadius}px ${theme.accentColor}`,
+            transform: `scale(${pulseScale})`,
           }}
         >
-          {hashtag}
+          <AutoSizeText
+            text={hashtag}
+            maxFontSize={120}
+            minFontSize={60}
+            maxWidth={1700}
+            fontWeight={900}
+            style={{ color: theme.accentColor }}
+          />
         </div>
         <div
           style={{
             color: theme.mutedTextColor,
-            fontSize: 64,
+            fontSize: 54,
             marginTop: 40,
             textAlign: "center",
             opacity: subtitleOpacity,
@@ -167,22 +201,29 @@ export const HashtagScene: React.FC<HashtagSceneProps> = ({
         >
           イベントの様子をポストしよう!
         </div>
+        <div
+          style={{
+            fontSize: 40,
+            marginTop: 16,
+            opacity: subtitleOpacity * 0.6,
+            transform: `translateY(${arrowBounce}px)`,
+          }}
+        >
+          ↓
+        </div>
       </>
     );
   };
 
   return (
-    <AbsoluteFill
-      style={{
-        background: `linear-gradient(135deg, ${theme.gradientFrom} 0%, ${theme.backgroundColor} 100%)`,
-        justifyContent: "center",
-        alignItems: "center",
-        fontFamily,
-      }}
+    <SceneWrapper
+      theme={theme}
+      background={`linear-gradient(135deg, ${theme.gradientFrom} 0%, ${theme.backgroundColor} 100%)`}
+      backgroundIntensity={0.8}
     >
       {effect === "springBounce" && renderSpringBounce()}
       {effect === "rotateIn" && renderRotateIn()}
       {effect === "pulseGlow" && renderPulseGlow()}
-    </AbsoluteFill>
+    </SceneWrapper>
   );
 };

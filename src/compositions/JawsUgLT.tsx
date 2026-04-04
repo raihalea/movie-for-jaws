@@ -2,10 +2,12 @@ import React from "react";
 import { AbsoluteFill, Html5Audio, staticFile, useVideoConfig } from "remotion";
 import {
   linearTiming,
+  springTiming,
   TransitionSeries,
 } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
+import { wipe } from "@remotion/transitions/wipe";
 import { IntroScene } from "../components/IntroScene";
 import { TitleScene } from "../components/TitleScene";
 import { SpeakerScene } from "../components/SpeakerScene";
@@ -13,6 +15,7 @@ import { HashtagScene } from "../components/HashtagScene";
 import { LicenseScene } from "../components/LicenseScene";
 import { calculateSceneDurations } from "../utils/timing";
 import { resolveTheme } from "../utils/theme";
+import { AudioPulseProvider } from "../utils/AudioPulseContext";
 import type { JawsUgLTProps } from "../types";
 
 export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
@@ -27,6 +30,7 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
   const licenseTheme = resolveTheme(props.theme, props.licenseTheme);
 
   return (
+    <AudioPulseProvider musicUrl={props.musicUrl}>
     <AbsoluteFill style={{ backgroundColor: introTheme.backgroundColor }}>
       {props.musicUrl && (
         <Html5Audio src={staticFile(props.musicUrl)} volume={0.3} />
@@ -43,8 +47,8 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
           />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition
-          timing={linearTiming({ durationInFrames: td })}
-          presentation={fade()}
+          timing={springTiming({ config: { damping: 200 }, durationInFrames: td })}
+          presentation={wipe()}
         />
         <TransitionSeries.Sequence durationInFrames={durations.titleDuration}>
           <TitleScene eventTitle={props.eventTitle} theme={titleTheme} effect={props.titleEffect} />
@@ -52,8 +56,12 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
         {props.speakers.map((group, i) => (
           <React.Fragment key={i}>
             <TransitionSeries.Transition
-              timing={linearTiming({ durationInFrames: td })}
-              presentation={i % 2 === 0 ? fade() : slide()}
+              timing={springTiming({ config: { damping: 200 }, durationInFrames: td })}
+              presentation={
+                i % 2 === 0
+                  ? slide({ direction: "from-right" })
+                  : slide({ direction: "from-left" })
+              }
             />
             <TransitionSeries.Sequence
               durationInFrames={durations.speakerDurations[i]}
@@ -82,5 +90,6 @@ export const JawsUgLT: React.FC<JawsUgLTProps> = (props) => {
         )}
       </TransitionSeries>
     </AbsoluteFill>
+    </AudioPulseProvider>
   );
 };

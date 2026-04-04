@@ -1,11 +1,13 @@
 export type Speaker = {
   name: string;
   affiliation: string;
+  subAffiliation?: string;
   photoUrl: string;
 };
 
 export type SpeakerGroup = {
   talkTitle: string;
+  subTalkTitle?: string;
   speakers: Speaker[];
 };
 
